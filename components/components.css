@@ -1,0 +1,79 @@
+﻿@import "../app/style/variables.css";
+
+header{
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    padding: 10px 2%;
+    margin: 0 auto;
+    background: var(--bg);
+    border: 2px solid rgba(60, 60, 60, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 1200px;
+    width: 100%;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-divider{
+    height: 2rem;
+    width: 2px;
+    background-color: var(--border-muted);
+    margin: 0 10px;
+}
+
+.nav-logo{
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.nav-links-list{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-link{
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    padding: 0.5rem 0.5rem;
+    font-weight: 600;
+}
+
+.nav-link:hover{
+    color: var(--text-muted);
+    text-shadow: 0 0 15px var(--text-muted);
+    /*border: 1px solid var(--border);*/
+}
+
+.nav-link:hover::after{
+    width: 50%;
+    left: 25%;
+}
+
+
+.nav-link::after{
+    content: '';
+    position: absolute;
+    bottom: 0.2rem;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--secondary);
+    transition: all 0.3s ease;
+}
+
+.nav-link.active{
+    color: var(--text);
+    text-shadow: 0 0 15px var(--text-muted);
+}
