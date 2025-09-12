@@ -31,6 +31,9 @@
     --success: hsl(146 17% 59%);
     --info: hsl(217 28% 65%);
 
+    --glass-dark: oklch(0.1 0.025 253 / 0.8);
+    --glass: oklch(0.15 0.025 253 / 0.7);
+    --glass-light: oklch(0.2 0.025 253 / 0.6);
     --transparent: rgba(0 0 0 / 0);
 }
 body.light {
@@ -65,4 +68,9 @@ body.light {
     --warning: hsl(52 23% 34%);
     --success: hsl(147 19% 36%);
     --info: hsl(217 22% 41%);
+
+    --glass-dark: oklch(0.92 0.025 253 / 0.9);
+    --glass: oklch(0.96 0.025 253 / 0.7);
+    --glass-light: oklch(1 0.025 253 / 0.5);
+    --transparent: rgba(0 0 0 / 0);
 }
