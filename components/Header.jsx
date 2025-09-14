@@ -29,8 +29,8 @@ export default function Header() {
                         <ul className="nav-links-list">
                             <li><Link href="/" className={`${isActive('/') ? 'nav-link active' : 'nav-link'}`}>Главная</Link></li>
                             <li><Link href="/about" className={`${isActive('/about') ? 'nav-link active' : 'nav-link'}`}>О нас</Link></li>
-                            <li><Link href="/contact" className={`${isActive('/contact') ? 'nav-link active' : 'nav-link'}`}>Контакты</Link></li>
-                            <li><Link href="/blog" className={`${isActive('/blog') ? 'nav-link active' : 'nav-link'}`}>Блог</Link></li>
+                            <li><Link href="/news" className={`${isActive('/news') ? 'nav-link active' : 'nav-link'}`}>Новости</Link></li>
+                            <li><Link href="/rules" className={`${isActive('/rules') ? 'nav-link active' : 'nav-link'}`}>Правила</Link></li>
                         </ul>
                     </div>
 
