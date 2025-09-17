@@ -34,3 +34,138 @@ body {
   width: 100%;
   margin: 0 auto;
 }
+
+main{
+  grid-auto-rows: auto 1fr auto;
+  align-items: center;
+  justify-items: center;
+  padding: var(--space-md);
+  gap: var(--space-xl);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-section {
+  padding: var(--space-2xl) 0;
+}
+
+.hero-section .content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xl);
+  justify-content: space-between;
+}
+
+.hero-section-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hero-section-image img {
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-2xl);
+}
+
+.hero-section-text {
+  flex: 1;
+  text-align: left;
+  gap: var(--space-2xl);
+}
+
+.hero-section-text h1 {
+  font-size: var(--text-5xl);
+  text-transform: uppercase;
+  font-weight: var(--font-black);
+  color: var(--text);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero-section-text p {
+  font-size: var(--text-xl);
+  color: var(--text-muted);
+  line-height: var(--leading-relaxed);
+  margin: var(--space-lg) auto;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.hero-button{
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  padding: var(--space-md);
+  border-radius: var(--radius-2xl);
+  background-color: var(--primary);
+  border: 2px solid transparent;
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  transition: var(--transition-slow);
+}
+
+.hero-button:hover{
+  box-shadow: 0 0 30px var(--primary);
+  border: 2px solid var(--primary);
+  background-color: var(--bg-light);
+}
+
+@media (max-width: 968px) {
+  .hero-section .content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-2xl);
+  }
+
+  .hero-section-text {
+    text-align: center;
+    order: 2;
+  }
+
+  .hero-section-image {
+    order: 1;
+    justify-content: center;
+  }
+
+  .hero-section-text h1 {
+    font-size: var(--text-4xl);
+  }
+
+  .hero-section-text p {
+    font-size: var(--text-lg);
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .hero-section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .hero-section-text h1 {
+    font-size: var(--text-3xl);
+  }
+
+  .hero-section-text p {
+    font-size: var(--text-md);
+  }
+
+  .hero-section-image img {
+    max-width: 100%;
+  }
+}
+
+

@@ -96,6 +96,7 @@ body.light {
     --text-2xl: 1.5rem;   /* 24px */
     --text-3xl: 1.875rem; /* 30px */
     --text-4xl: 2.25rem;  /* 36px */
+    --text-5xl: 4rem; /* 64px */
 
     /* ===== FONT WEIGHTS ===== */
     --font-light: 300;

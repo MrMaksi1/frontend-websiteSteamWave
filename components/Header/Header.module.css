@@ -1,0 +1,219 @@
+﻿/* Main */
+
+.header {
+    background: var(--glass-dark);
+    backdrop-filter: var(--blur-lg);
+    border-bottom: var(--line-sm) solid var(--border-muted);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: var(--transition-normal);
+}
+
+.headerContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.headerDivider {
+    height: var(--space-xl);
+    width: var(--line-xs);
+    background-color: var(--border-muted);
+    margin: 0 var(--space-lg);
+}
+
+.headerCenter {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Header server logo*/
+
+.headerLogo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    text-decoration: none;
+    font-weight: var(--font-bold);
+    font-size: var(--text-2xl);
+    color: var(--text);
+    transition: var(--transition-normal);
+}
+
+.headerLogo:hover {
+    color: var(--primary);
+}
+
+.headerLogoIcon {
+    width: var(--space-xl);
+    height: var(--space-xl);
+    mask: url('/black_256.svg') no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url('/black_256.svg') no-repeat center;
+    -webkit-mask-size: contain;
+    background-color: var(--text);
+    transition: var(--transition-normal);
+}
+
+.headerLogo:hover .headerLogoIcon {
+    background-color: var(--primary);
+}
+
+.headerLinksList {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    list-style: none;
+}
+
+.headerLink {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: var(--font-normal);
+    padding: var(--space-sm) 0;
+    position: relative;
+    transition: var(--transition-normal);
+    display: inline-block;
+    min-width: var(--space-4xl);
+    text-align: center;
+    font-size: var(--text-lg);
+}
+
+.headerLink:hover {
+    color: var(--text);
+}
+
+.headerLink::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: var(--line-sm);
+    background: var(--secondary);
+    transition: var(--transition-normal);
+}
+
+.headerLink:hover::after {
+    width: 75%;
+}
+
+.headerLink:global(.active) {
+    color: var(--text);
+    font-weight: var(--font-semibold);
+}
+
+.headerLink:global(.active)::after {
+    width: 100%;
+    background: var(--primary);
+}
+
+/* Profile Picture */
+
+.headerProfile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space-2xl);
+    height: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    background: var(--bg-light);
+    border: var(--line-xs) solid var(--border-muted);
+    transition: var(--transition-normal);
+    text-decoration: none;
+}
+
+.headerProfile:hover:not(:global(.active)) {
+    border-color: var(--border);
+    transform: translateY(-1px);
+}
+
+.headerProfile:global(.active) {
+    border: var(--line-sm) solid var(--primary);
+    background: var(--glass-light);
+}
+
+.headerProfileImage {
+    width: var(--space-xl);
+    height: var(--space-xl);
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+}
+
+/* Burger menu */
+
+.menuWrap{
+    display: none;
+}
+
+/* Media queries */
+
+@media (max-width: 768px) {
+    .headerContainer {
+        padding: 0 var(--space-md);
+    }
+
+    .headerDivider {
+        margin: 0 var(--space-md);
+    }
+
+    .headerLinksList {
+        gap: var(--space-sm);
+    }
+
+    .headerLogo {
+        font-size: 1.2rem;
+    }
+
+    .headerLogoIcon {
+        width: var(--space-xl);
+        height: var(--space-xl);
+    }
+}
+
+@media (max-width: 640px) {
+    .nav {
+        height: 60px;
+    }
+
+    .headerLinksList {
+        gap: var(--space-xs);
+        display: grid;
+    }
+
+    .headerDivider {
+        display: none;
+    }
+
+    .headerLink {
+        font-size: 0.9rem;
+    }
+
+    .headerProfile {
+        width: 36px;
+        height: 36px;
+    }
+
+    .headerProfileImage {
+        width: 24px;
+        height: 24px;
+    }
+
+    .headerLogo{
+        display: none;
+    }
+
+    .headerCenter {
+        display: none;
+    }
+}
