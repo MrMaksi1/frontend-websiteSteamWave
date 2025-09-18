@@ -9,6 +9,8 @@ import BurgerMenu from "@/components/BurgerMenu/BurgerMenu";
 export default function Header() {
     const pathname = usePathname()
 
+    const isAuthorized = false;
+
     const isActive = (path) => {
         return pathname === path
     }
@@ -47,9 +49,15 @@ export default function Header() {
 
                     <span className={styles.headerDivider}/>
 
-                    <Link href="/profile" className={`${styles.headerProfile} ${isActive('/profile') ? 'active' : ''}`}>
-                        <img className={styles.headerProfileImage} src="https://minotar.net/helm/kotean_st/32.png" alt="Profile picture"/>
-                    </Link>
+                    {isAuthorized ? (
+                        <Link href="/profile" className={`${styles.headerProfile} ${isActive('/profile') ? 'active' : ''}`}>
+                            <img className={styles.headerProfileImage} src="https://minotar.net/helm/kotean_st/32.png" alt="Profile picture"/>
+                        </Link>
+                    ) : (
+                        <Link href="/log-reg" className={`${styles.headerLogin} ${isActive('/log-reg') ? 'active' : ''}`}>
+                            <span className={styles.headerLoginIcon}/>
+                        </Link>
+                    )}
                 </nav>
             </div>
         </header>

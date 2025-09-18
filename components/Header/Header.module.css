@@ -118,7 +118,7 @@
     background: var(--primary);
 }
 
-/* Profile Picture */
+/* Profile & Login button */
 
 .headerProfile {
     display: flex;
@@ -149,6 +149,41 @@
     border-radius: var(--radius-sm);
     object-fit: cover;
 }
+
+.headerLoginIcon {
+    width: var(--space-xl);
+    height: var(--space-xl);
+    mask: url('/sign-in.svg') no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url('/sign-in.svg') no-repeat center;
+    -webkit-mask-size: contain;
+    background-color: var(--text);
+    transition: var(--transition-normal);
+}
+
+.headerLogin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space-2xl);
+    height: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    background: var(--bg-light);
+    border: var(--line-xs) solid var(--border-muted);
+    transition: var(--transition-normal);
+    text-decoration: none;
+}
+
+.headerLogin:hover:not(:global(.active)) {
+    border-color: var(--border);
+    transform: translateY(-1px);
+}
+
+.headerLogin:global(.active) {
+    border: var(--line-sm) solid var(--primary);
+    background: var(--glass-light);
+}
+
 
 /* Burger menu */
 

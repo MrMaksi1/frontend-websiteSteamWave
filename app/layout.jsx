@@ -38,11 +38,15 @@ export default function RootLayout({ children }) {
 
     return (
     <html lang="ru" className="dark:scheme-dark">
-    <body className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${outfit.variable} ${inter.variable} antialiased`}>
-        <Header/>
-        {children}
-        <Footer/>
-    </body>
+        <body className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${outfit.variable} ${inter.variable} antialiased`}>
+            <div className="appContainer">
+                <Header/>
+                <div className="mainContent">
+                    {children}
+                </div>
+                <Footer/>
+            </div>
+        </body>
     </html>
   );
 }
