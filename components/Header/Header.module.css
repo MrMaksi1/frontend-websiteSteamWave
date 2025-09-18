@@ -183,7 +183,7 @@
 
 @media (max-width: 640px) {
     .nav {
-        height: 60px;
+        height: 80px;
     }
 
     .headerLinksList {
@@ -200,13 +200,13 @@
     }
 
     .headerProfile {
-        width: 36px;
-        height: 36px;
+        width: var(--space-2xl);
+        height: var(--space-2xl);
     }
 
     .headerProfileImage {
-        width: 24px;
-        height: 24px;
+        width: var(--space-xl);
+        height: var(--space-xl);
     }
 
     .headerLogo{
@@ -215,5 +215,12 @@
 
     .headerCenter {
         display: none;
+    }
+
+    .menuWrap{
+        justify-content: center;
+        display: flex;
+        width: var(--space-2xl);
+        height: var(--space-2xl);
     }
 }

@@ -15,7 +15,7 @@ export default function Footer() {
             <div className={styles.footerContainer}>
                 <div className={styles.footerTop}>
                     <div className={styles.footerBrand}>
-                        <Link href="/public" className={styles.footerLogo}>
+                        <Link href="/" className={styles.footerLogo}>
                             STEAMWAVE
                         </Link>
                         <p className={styles.footerDescription}>
@@ -27,7 +27,7 @@ export default function Footer() {
                         <div className={styles.footerColumn}>
                             <h4 className={styles.footerTitle}>Навигация</h4>
                             <ul className={styles.footerList}>
-                                <li><Link href="/public" className={styles.footerLink}>Главная</Link></li>
+                                <li><Link href="/" className={styles.footerLink}>Главная</Link></li>
                                 <li><Link href="/about" className={styles.footerLink}>О нас</Link></li>
                                 <li><Link href="/news" className={styles.footerLink}>Новости</Link></li>
                                 <li><Link href="/rules" className={styles.footerLink}>Правила</Link></li>

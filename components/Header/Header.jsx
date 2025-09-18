@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import '../components.css'
 import styles from './Header.module.css'
-import HamburgerMenu from "@/components/HamburgerMenu";
+import BurgerMenu from "@/components/BurgerMenu/BurgerMenu";
 
 export default function Header() {
     const pathname = usePathname()
@@ -13,17 +13,26 @@ export default function Header() {
         return pathname === path
     }
 
+    const menuItems = [
+        { label: 'Главная', href: '/'},
+        { label: 'О нас', href: '/about'},
+        { label: 'Новости', href: '/news'},
+        { label: 'Правила', href: '/rules'}
+    ]
+
     return (
         <header className={styles.header}>
             <div className={styles.headerContainer}>
                 <nav className={styles.nav}>
 
-                    <Link href="/public" className={styles.headerLogo}>
+                    <Link href="/" className={styles.headerLogo}>
                         <span className={styles.headerLogoIcon}></span>
                         {/*STEAMWAVE*/}
                     </Link>
 
-                    {/*<HamburgerMenu />*/}
+                    <div className={styles.menuWrap}>
+                        <BurgerMenu menuItems={menuItems} />
+                    </div>
 
                     <span className={styles.headerDivider}/>
 
