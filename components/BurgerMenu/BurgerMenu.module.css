@@ -2,22 +2,29 @@
 
 .burgerMenu {
     position: relative;
+    background: var(--bg-light);
+    padding: var(--space-sm);
+    height: var(--space-2xl);
+    width: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    background: var(--bg-light);
+    border: var(--line-xs) solid var(--border-muted);
 }
 
 /* Menu button */
 
 .burgerButton {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: var(--space-2xl);
-    height: var(--space-2xl);
+    width: 100%;
+    height: 100%;
     background: none;
     border: none;
     cursor: pointer;
-    padding: var(--space-xs);
+    /*padding: var(--space-xs);*/
     z-index: 1001;
-    position: relative;
 }
 
 .burgerLine {
@@ -29,7 +36,7 @@
 }
 
 .burgerButtonOpen .burgerLine:nth-child(1) {
-    transform: translate(0, 13px) rotate(45deg) ;
+    transform: translate(0, 10px) rotate(45deg) ;
 }
 
 .burgerButtonOpen .burgerLine:nth-child(2) {
@@ -37,7 +44,7 @@
 }
 
 .burgerButtonOpen .burgerLine:nth-child(3) {
-    transform: translate(0, -13px) rotate(-45deg);
+    transform: translate(0, -10px) rotate(-45deg);
 }
 
 /* Background tint */

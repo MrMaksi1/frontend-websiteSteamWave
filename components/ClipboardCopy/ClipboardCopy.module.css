@@ -1,0 +1,77 @@
+﻿.copyContainer {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.copyContainer:hover {
+    opacity: 0.9;
+}
+
+.text {
+    color: var(--primary);
+    font-weight: var(--font-medium);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    background: var(--glass-light);
+    border: 1px solid var(--border);
+    user-select: none;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 80%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    background: var(--bg);
+    color: var(--text);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-md);
+    border: var(--line-xs) solid var(--border);
+    z-index: var(--z-index-1);
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: var(--line-md);
+    border-style: solid;
+    border-color: var(--bg) transparent transparent transparent;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-12px);
+}
+
+.copyContainer:hover .tooltip:not(.visible) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-12px);
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .copyContainer:hover .tooltip:not(.visible) {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .copyContainer:active {
+        transform: scale(0.98);
+    }
+}

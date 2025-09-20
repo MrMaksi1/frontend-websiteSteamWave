@@ -1,0 +1,68 @@
+﻿.notification {
+    position: fixed;
+    top: var(--space-lg);
+    right: var(--space-lg);
+    background: var(--bg-light);
+    border: var(--line-xs) solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    box-shadow: var(--shadow-lg);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: var(--transition-normal);
+    z-index: var(--z-index-max);
+    max-width: 300px;
+}
+
+.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.info {
+    border-left: var(--line-md) solid var(--info);
+}
+
+.success {
+    border-left: var(--line-md) solid var(--success);
+}
+
+.warning {
+    border-left: var(--line-md) solid var(--warning);
+}
+
+.error {
+    border-left: var(--line-md) solid var(--danger);
+}
+
+.message {
+    color: var(--text);
+    font-size: var(--text-sm);
+    flex: 1;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: var(--space-xs);
+    font-size: var(--text-lg);
+    transition: var(--transition-normal);
+}
+
+.closeButton:hover {
+    color: var(--text);
+}
+
+@media (max-width: 480px) {
+    .notification {
+        top: var(--space-5xl);
+        left: var(--space-lg);
+        right: var(--space-lg);
+        max-width: none;
+    }
+}

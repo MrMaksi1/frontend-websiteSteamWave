@@ -9,7 +9,7 @@ import BurgerMenu from "@/components/BurgerMenu/BurgerMenu";
 export default function Header() {
     const pathname = usePathname()
 
-    const isAuthorized = false;
+    const isAuthorized = true;
 
     const isActive = (path) => {
         return pathname === path

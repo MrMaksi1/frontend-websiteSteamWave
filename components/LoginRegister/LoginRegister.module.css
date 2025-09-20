@@ -109,7 +109,6 @@
 .submitButton:hover {
     background: var(--secondary);
     transform: translateY(-1px);
-    color: var(--text);
 }
 
 .submitButton:active {
@@ -144,6 +143,50 @@
     text-decoration: none;
     font-size: var(--text-sm);
     transition: var(--transition-normal);
+}
+
+.forgotPassword:hover {
+    color: var(--secondary);
+}
+
+.forgotPasswordContent {
+    text-align: center;
+    color: var(--text);
+}
+
+.forgotPasswordContent h3 {
+    margin-bottom: var(--space-lg);
+    color: var(--primary);
+}
+
+.forgotPasswordContent p {
+    margin-top: var(--space-lg );
+    line-height: var(--leading-relaxed);
+}
+
+.discordInfo, .tgInfo {
+    background: var(--glass-light);
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
+    margin: var(--space-md) 0;
+    border: 1px solid var(--border);
+}
+
+.discordInfo strong, .tgInfo strong {
+    color: var(--primary);
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+.forgotPassword {
+    background: none;
+    border: none;
+    color: var(--primary);
+    text-decoration: underline;
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition: var(--transition-normal);
+    padding: 0;
 }
 
 .forgotPassword:hover {

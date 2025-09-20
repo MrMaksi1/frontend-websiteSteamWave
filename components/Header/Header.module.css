@@ -244,6 +244,16 @@
         height: var(--space-xl);
     }
 
+    .headerLogin {
+        width: var(--space-2xl);
+        height: var(--space-2xl);
+    }
+
+    .headerLoginIcon {
+        width: var(--space-xl);
+        height: var(--space-xl);
+    }
+
     .headerLogo{
         display: none;
     }
