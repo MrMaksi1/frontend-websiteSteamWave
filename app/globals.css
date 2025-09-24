@@ -124,6 +124,7 @@ main{
   box-shadow: 0 0 30px var(--primary);
   border: 2px solid var(--primary);
   background-color: var(--bg-light);
+  color: var(--text)
 }
 
 @media (max-width: 968px) {

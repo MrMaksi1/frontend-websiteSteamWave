@@ -13,7 +13,6 @@ export default function Profile() {
         rank: 'Игрок',
         balance: 248,
         playTime: '127 часов',
-        achievements: 24,
         servers: ['Create']
     })
 
@@ -63,16 +62,16 @@ export default function Profile() {
 
                 {/* Main information */}
                 <div className={styles.profileCard}>
-                    <div className={styles.avatarSection}>
-                        <img
-                            src="https://minotar.net/helm/kotean_st/128.png"
-                            alt="Аватар"
-                            className={styles.avatar}
-                        />
-                        <div className={styles.avatarOverlay}>
-                            <span className={styles.changeAvatarText}>Сменить аватар</span>
-                        </div>
-                    </div>
+                    {/*<div className={styles.avatarSection}>*/}
+                    {/*    <img*/}
+                    {/*        src="https://minotar.net/helm/kotean_st/128.png"*/}
+                    {/*        alt="Аватар"*/}
+                    {/*        className={styles.avatar}*/}
+                    {/*    />*/}
+                    {/*    <div className={styles.avatarOverlay}>*/}
+                    {/*        <span className={styles.changeAvatarText}>Сменить аватар</span>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
                     <div className={styles.infoSection}>
                         <div className={styles.usernameRow}>

@@ -1,0 +1,130 @@
+﻿.container {
+    display: grid;
+    gap: var(--space-3xl);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.ipSection,
+.downloadSection {
+    background: var(--glass);
+    backdrop-filter: var(--blur-md);
+    border: 1px solid var(--border-muted);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-2xl);
+}
+
+.ipTitle,
+.downloadTitle {
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--text);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.ipContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--glass-dark);
+    border-radius: var(--radius-full);
+    padding: var(--space-md) var(--space-lg);
+    border: 1px solid var(--border-muted);
+}
+
+.ip {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    color: var(--text);
+    font-weight: var(--font-medium);
+}
+
+.copyButton {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    font-size: var(--text-sm);
+    transition: var(--transition-normal);
+    white-space: nowrap;
+}
+
+.copyButton:hover {
+    background: var(--secondary);
+}
+
+.copyButton.copied {
+    background: var(--success);
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+}
+
+.downloadButton {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--glass-light);
+    border: 1px solid var(--border-muted);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    color: var(--text);
+    transition: var(--transition-normal);
+    backdrop-filter: var(--blur-sm);
+}
+
+.downloadButton:hover {
+    background: var(--glass);
+    border-color: var(--border);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.icon {
+    font-size: var(--text-2xl);
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.os {
+    font-weight: var(--font-semibold);
+    font-size: var(--text-lg);
+}
+
+.format {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+@media (max-width: 768px) {
+    .container {
+        gap: var(--space-2xl);
+    }
+
+    .ipSection,
+    .downloadSection {
+        padding: var(--space-xl);
+    }
+
+    .ipContainer {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+    }
+
+    .buttons {
+        grid-template-columns: 1fr;
+    }
+}

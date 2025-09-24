@@ -1,8 +1,11 @@
-﻿import Image from "next/image";
+﻿import PagePlaceholder from "@/components/PagePlaceholder/PagePlaceholder";
 
 export default function Home() {
     return (
-        <div className="">
-        </div>
+        <main>
+            <div className="container">
+                <PagePlaceholder/>
+            </div>
+        </main>
     );
 }

@@ -48,7 +48,7 @@ export default function Footer() {
                             <h4 className={styles.footerTitle}>Социальные сети</h4>
                             <ul className={styles.footerList}>
                                 <li><a href="https://t.me/steamwavemc/" className={styles.footerLink}>Telegram</a></li>
-                                <li><a href="#" className={styles.footerLink}>Discord</a></li>
+                                <li><a href="https://discord.gg/8gXDRTnupt" className={styles.footerLink}>Discord</a></li>
                                 <li><a href="#" className={styles.footerLink}>YouTube</a></li>
                             </ul>
                         </div>
