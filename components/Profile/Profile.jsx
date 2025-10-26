@@ -32,8 +32,10 @@ export default function Profile() {
                 const data = await response.json()
                 if (!response.ok) throw new Error(data.message || 'Ошибка при загрузке профиля')
 
-                const registrationDate = data.registrationDate
+                // Сохраняем только роль в localStorage
+                localStorage.setItem('role', data.role)
 
+                const registrationDate = data.registrationDate
                 const now = new Date()
                 const formattedTime = now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })
                 const formattedDate = now.toLocaleDateString('ru-RU')
@@ -43,7 +45,8 @@ export default function Profile() {
                     email: `${data.username}@steamwave.ru`,
                     registrationDate: registrationDate,
                     lastLogin: `${formattedTime} - ${formattedDate}`,
-                    rank: data.role === 'ADMIN' ? 'Администратор' : 'Игрок',
+                    role: data.role,
+                    rank: data.role === 'ROLE_ADMIN' ? 'Администратор' : 'Игрок',
                     balance: 0,
                     playTime: '0 часов',
                     servers: ['Create']
@@ -187,7 +190,29 @@ export default function Profile() {
                         </div>
 
                         {!isEditing ? (
-                            <button className={styles.editButton} onClick={handleEdit}>Редактировать профиль</button>
+                            <div className={styles.buttonGroup}>
+                                <button className={styles.editButton} onClick={handleEdit}>Редактировать профиль</button>
+                                <button
+                                    className={styles.logoutButton}
+                                    onClick={() => {
+                                        localStorage.clear()
+                                        setUserData(null)
+                                        router.push('/log-reg')
+                                    }}
+                                >
+                                    Выйти
+                                </button>
+
+                                {/* Кнопка Админка */}
+                                {userData.role === 'ROLE_ADMIN' && (
+                                    <button
+                                        className={styles.adminButton}
+                                        onClick={() => router.push('/admin')}
+                                    >
+                                        Админка
+                                    </button>
+                                )}
+                            </div>
                         ) : (
                             <div className={styles.editActions}>
                                 <button className={styles.saveButton} onClick={handleSave}>Сохранить</button>

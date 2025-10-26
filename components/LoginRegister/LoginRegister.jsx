@@ -33,104 +33,109 @@ export default function LoginRegister() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value
-    }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
-    setSuccess('')
+  /** 🔹 Вспомогательная функция для обновления accessToken */
+  const refreshAccessToken = async () => {
+    const refreshToken = localStorage.getItem('refreshToken')
+    if (!refreshToken) throw new Error('Нет refresh token, войдите снова')
 
-    if (activeTab === 'login') {
-      if (!formData.username || !formData.password) {
-        setError('Заполните все поля')
-        return
-      }
+    const res = await fetch(`${API_URL}/refresh`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refresh_token: refreshToken })
+    })
 
+    const data = await res.json()
+    if (!res.ok) throw new Error(data.error || 'Ошибка обновления токена')
+
+    localStorage.setItem('accessToken', data.accessToken)
+    return data.accessToken
+  }
+
+  /** 🔹 Отправка запроса с автоматическим refresh токена */
+  const fetchWithAuth = async (url, options = {}) => {
+    let token = localStorage.getItem('accessToken')
+    options.headers = { ...(options.headers || {}), 'Authorization': `Bearer ${token}` }
+
+    let res = await fetch(url, options)
+    if (res.status === 401) {
+      // accessToken истёк — пробуем обновить
       try {
-        const response = await fetch(`${API_URL}/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            username: formData.username,
-            password: formData.password
-          })
-        })
-
-        const data = await response.json()
-
-        if (!response.ok) {
-          throw new Error(data.error || data.message || 'Ошибка входа')
-        }
-
-        if (data.accessToken && data.refreshToken) {
-          localStorage.setItem('accessToken', data.accessToken)
-          localStorage.setItem('refreshToken', data.refreshToken)
-          localStorage.setItem('username', formData.username)
-        }
-
-        setNotification({
-          message: 'Вход выполнен успешно!',
-          type: 'success'
-        })
-        setSuccess('Вход выполнен успешно!')
-
-        window.location.href = '/profile'
+        token = await refreshAccessToken()
+        options.headers['Authorization'] = `Bearer ${token}`
+        res = await fetch(url, options)
       } catch (err) {
-        setError(err.message)
-        setNotification({
-          message: err.message,
-          type: 'error'
-        })
-      }
-    } else {
-      if (!formData.username || !formData.password || !formData.confirmPassword) {
-        setError('Заполните все поля')
-        return
-      }
-      if (formData.password !== formData.confirmPassword) {
-        setError('Пароли не совпадают')
-        return
-      }
-
-      try {
-        const response = await fetch(`${API_URL}/register`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            username: formData.username,
-            password: formData.password
-          })
-        })
-
-        const data = await response.json()
-
-        if (!response.ok) {
-          throw new Error(data.message || 'Ошибка регистрации')
-        }
-
-        setNotification({
-          message: data.message || 'Регистрация прошла успешно!',
-          type: 'success'
-        })
-        setSuccess('Регистрация прошла успешно!')
-        setActiveTab('login')
-      } catch (err) {
-        setError(err.message)
-        setNotification({
-          message: err.message,
-          type: 'error'
-        })
+        throw new Error('Сессия истекла. Войдите снова.')
       }
     }
+    return res
   }
 
-  const handleForgotPassword = () => {
-    setShowForgotPassword(true)
+const handleSubmit = async (e) => {
+  e.preventDefault()
+  setError('')
+  setSuccess('')
+
+  if (activeTab === 'login') {
+    if (!formData.username || !formData.password) {
+      setNotification({ message: 'Заполните все поля', type: 'error' })
+      return
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: formData.username, password: formData.password })
+      })
+
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.error || data.message || 'Ошибка входа')
+
+      localStorage.setItem('accessToken', data.accessToken)
+      localStorage.setItem('refreshToken', data.refreshToken)
+      localStorage.setItem('username', formData.username)
+
+      setNotification({ message: 'Вход выполнен успешно!', type: 'success' })
+      setSuccess('Вход выполнен успешно!')
+      window.location.href = '/profile'
+    } catch (err) {
+      setNotification({ message: err.message, type: 'error' })
+    }
+  } else {
+    // регистрация
+    if (!formData.username || !formData.password || !formData.confirmPassword) {
+      setNotification({ message: 'Заполните все поля', type: 'error' })
+      return
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setNotification({ message: 'Пароли не совпадают', type: 'error' })
+      return
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: formData.username, password: formData.password })
+      })
+
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.message || 'Ошибка регистрации')
+
+      setNotification({ message: data.message || 'Регистрация прошла успешно!', type: 'success' })
+      setSuccess('Регистрация прошла успешно!')
+      setActiveTab('login')
+    } catch (err) {
+      setNotification({ message: err.message, type: 'error' })
+    }
   }
+}
+
+  const handleForgotPassword = () => setShowForgotPassword(true)
 
   return (
     <>

@@ -2,34 +2,42 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import '../components.css'
 import styles from './Header.module.css'
 import BurgerMenu from "@/components/BurgerMenu/BurgerMenu";
 
 export default function Header() {
     const pathname = usePathname()
+    const [isAuthorized, setIsAuthorized] = useState(false)
+    const [mounted, setMounted] = useState(false)
 
-    const isAuthorized = true;
+    useEffect(() => {
+        setMounted(true) // Компонент отрендерился на клиенте
+        const token = localStorage.getItem('accessToken')
+        setIsAuthorized(!!token)
+    }, [])
 
-    const isActive = (path) => {
-        return pathname === path
+    if (!mounted) {
+        // Пока не смонтировалось — не рендерим ничего, чтобы не вызвать конфликт
+        return null
     }
 
+    const isActive = (path) => pathname === path
+
     const menuItems = [
-        { label: 'Главная', href: '/'},
-        { label: 'О нас', href: '/about'},
-        { label: 'Новости', href: '/news'},
-        { label: 'Правила', href: '/rules'}
+        { label: 'Главная', href: '/' },
+        { label: 'О нас', href: '/about' },
+        { label: 'Новости', href: '/news' },
+        { label: 'Правила', href: '/rules' }
     ]
 
     return (
         <header className={styles.header}>
             <div className={styles.headerContainer}>
                 <nav className={styles.nav}>
-
                     <Link href="/" className={styles.headerLogo}>
                         <span className={styles.headerLogoIcon}></span>
-                        {/*STEAMWAVE*/}
                     </Link>
 
                     <div className={styles.menuWrap}>
@@ -40,10 +48,16 @@ export default function Header() {
 
                     <div className={styles.headerCenter}>
                         <ul className={styles.headerLinksList}>
-                            <li><Link href="/" className={`${styles.headerLink} ${isActive('/') ? 'active' : ''}`}>Главная</Link></li>
-                            <li><Link href="/about" className={`${styles.headerLink} ${isActive('/about') ? 'active' : ''}`}>О нас</Link></li>
-                            <li><Link href="/news" className={`${styles.headerLink} ${isActive('/news') ? 'active' : ''}`}>Новости</Link></li>
-                            <li><Link href="/rules" className={`${styles.headerLink} ${isActive('/rules') ? 'active' : ''}`}>Правила</Link></li>
+                            {menuItems.map(item => (
+                                <li key={item.href}>
+                                    <Link
+                                        href={item.href}
+                                        className={`${styles.headerLink} ${isActive(item.href) ? 'active' : ''}`}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
@@ -51,7 +65,11 @@ export default function Header() {
 
                     {isAuthorized ? (
                         <Link href="/profile" className={`${styles.headerProfile} ${isActive('/profile') ? 'active' : ''}`}>
-                            <img className={styles.headerProfileImage} src="https://minotar.net/helm/kotean_st/32.png" alt="Profile picture"/>
+                            <img
+                                className={styles.headerProfileImage}
+                                src="https://minotar.net/helm/kotean_st/32.png"
+                                alt="Profile picture"
+                            />
                         </Link>
                     ) : (
                         <Link href="/log-reg" className={`${styles.headerLogin} ${isActive('/log-reg') ? 'active' : ''}`}>
