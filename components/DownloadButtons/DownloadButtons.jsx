@@ -53,7 +53,7 @@ export default function DownloadButtons() {
                     >
                         <span className={styles.icon}>☕</span>
                         <span className={styles.text}>
-                            <span className={styles.os}>Java</span>
+                            <span className={styles.os}>Mac / Linux</span>
                             <span className={styles.format}>.jar</span>
                         </span>
                     </a>

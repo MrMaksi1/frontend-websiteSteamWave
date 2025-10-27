@@ -1,19 +1,21 @@
-﻿/* Main */
+﻿/* ===== MAIN ===== */
 
 .header {
-    background: var(--glass-dark);
-    backdrop-filter: var(--blur-lg);
-    border-bottom: var(--line-sm) solid var(--border-muted);
-    position: sticky;
-    top: 0;
+    position: relative;
+    top: var(--space-sm);
     width: 100%;
     z-index: 1000;
     transition: var(--transition-normal);
 }
 
 .headerContainer {
+    background: var(--glass);
+    backdrop-filter: var(--blur-xs);
+    /*border-bottom: var(--line-sm) solid var(--border-muted);*/
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--shadow-xs);
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 var(--space-sm);
     padding: 0 var(--space-xl);
 }
 

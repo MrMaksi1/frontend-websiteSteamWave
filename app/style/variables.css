@@ -153,8 +153,12 @@ body.light {
     0 8px 16px oklch(0 0 0 / .2);
 
     --shadow-xs-inset:
-    inset -2 2px 2px oklch(.8 0 0 / .3),
-    inset 2 -2px 4px oklch(0 0 0 / .1);
+    inset -2px 2px 2px oklch(0 0 0 / .1),
+    inset 1px -1px 4px oklch(.8 0 0 / .3);
+
+    --shadow-sm-inset:
+    inset -3px 3px 4px oklch(0 0 0 / .1),
+    inset 2px -2px 6px oklch(.8 0 0 / .3);
 
 
     /*--shadow-xs: 0 1px 2px 0 oklch(.8 0 0 / 0.1);*/

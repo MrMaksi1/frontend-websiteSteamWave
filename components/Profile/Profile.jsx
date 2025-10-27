@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './Profile.module.css'
 import Notification from '@/components/Notification/Notification'
+import Image from "next/image";
 
 export default function Profile() {
     const [userData, setUserData] = useState(null)
@@ -121,8 +122,8 @@ export default function Profile() {
     if (!userData) return null
 
     const stats = [
-        { label: 'Comming soon', value: `${userData.balance} ₽`, icon: '💰' },
-        { label: 'Comming soon', value: userData.playTime, icon: '⏰' }
+        { label: 'SOON™', value: `${userData.balance} ₽`, icon: styles.iconWallet },
+        { label: 'SOON™', value: userData.playTime, icon: styles.iconTime }
     ]
 
     return (
@@ -164,7 +165,7 @@ export default function Profile() {
                             </div>
 
                             {isEditing && (
-                                <>
+                                <div className={styles.editPassword}>
                                     <div className={styles.infoItem}>
                                         <span className={styles.infoLabel}>Старый пароль:</span>
                                         <input
@@ -185,7 +186,7 @@ export default function Profile() {
                                             className={styles.editInput}
                                         />
                                     </div>
-                                </>
+                                </div>
                             )}
                         </div>
 
@@ -203,7 +204,6 @@ export default function Profile() {
                                     Выйти
                                 </button>
 
-                                {/* Кнопка Админка */}
                                 {userData.role === 'ROLE_ADMIN' && (
                                     <button
                                         className={styles.adminButton}
@@ -225,7 +225,9 @@ export default function Profile() {
                 <div className={styles.statsGrid}>
                     {stats.map((stat, index) => (
                         <div key={index} className={styles.statCard}>
-                            <div className={styles.statIcon}>{stat.icon}</div>
+                            <div className={styles.statIconBg}>
+                                <div className={`${styles.statIcon} ${stat.icon}`}></div>
+                            </div>
                             <div className={styles.statContent}>
                                 <div className={styles.statValue}>{stat.value}</div>
                                 <div className={styles.statLabel}>{stat.label}</div>

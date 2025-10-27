@@ -127,6 +127,28 @@ main{
   color: var(--text)
 }
 
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: var(--space-xs);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: var(--space-xs);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bg);
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+/* ^=====^ SCROLLBAR ^=====^ */
+
+
 @media (max-width: 968px) {
   .hero-section .content {
     flex-direction: column;

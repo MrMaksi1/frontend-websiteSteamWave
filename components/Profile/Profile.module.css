@@ -1,4 +1,15 @@
-﻿.profileContainer {
+﻿/* ===== STATISTIC ICONS ===== */
+.iconWallet {
+    mask: url('/svg/wallet-alt-svgrepo-com.svg') no-repeat center;
+    -webkit-mask: url('/svg/wallet-alt-svgrepo-com.svg') no-repeat center;
+}
+
+.iconTime {
+    mask: url('/svg/alarm-clock-alt-svgrepo-com.svg') no-repeat center;
+    -webkit-mask: url('/svg/alarm-clock-alt-svgrepo-com.svg') no-repeat center;
+}
+
+.profileContainer {
     padding: var(--space-xl) var(--space-md);
 }
 
@@ -24,18 +35,19 @@
 
 .profileCard {
     background: var(--bg);
-    border: var(--line-sm) solid transparent;
+    /*border: var(--line-sm) solid transparent;*/
     border-radius: var(--radius-xl);
     padding: var(--space-xl);
     display: flex;
     gap: var(--space-xl);
     align-items: flex-start;
     transition: var(--transition-normal);
+    box-shadow: var(--shadow-sm);
 }
 
-.profileCard:hover {
-    border: var(--line-sm) solid var(--border-muted);
-}
+/*.profileCard:hover {*/
+/*    border: var(--line-sm) solid var(--border-muted);*/
+/*}*/
 
 .avatarSection {
     position: relative;
@@ -128,62 +140,88 @@
 
 .editInput {
     background: var(--bg-light);
-    border: var(--line-xs) solid var(--border);
-    border-radius: var(--radius-md);
+    /*border: var(--line-xs) solid var(--border);*/
+    border-radius: var(--radius-xl);
     padding: var(--space-sm);
     color: var(--text);
     font-size: var(--text-md);
     width: 100%;
-    max-width: 300px;
+    max-width: 200px;
+    box-shadow: var(--shadow-xs-inset);
 }
 
 .editInput:focus {
     outline: none;
-    border-color: var(--primary);
+    background: var(--bg-dark);
 }
 
-.editButton, .saveButton, .cancelButton {
+.editButton, .saveButton, .cancelButton, .logoutButton, .adminButton {
     padding: var(--space-sm) var(--space-lg);
-    border: var(--line-xs) solid var(--border);
-    border-radius: var(--radius-md);
+    /*border: var(--line-xs) solid var(--border);*/
+    background: var(--bg-light);
+    color: var(--text-muted);
+    box-shadow: var(--shadow-xs);
+    border-radius: var(--radius-xl);
     font-size: var(--text-md);
     font-weight: var(--font-medium);
     cursor: pointer;
     transition: var(--transition-fast);
 }
 
-.editButton {
-    background: var(--primary);
-    color: var(--bg-dark);
+/*.editButton {*/
+/*    background: var(--primary);*/
+/*    color: var(--bg-dark);*/
+/*}*/
+
+/*.logoutButton{*/
+/*    background: var(--danger);*/
+/*    color: var(--bg-dark);*/
+/*}*/
+
+/*.adminButton {*/
+/*    background: var(--warning);*/
+/*    color: var(--bg-dark);*/
+/*}*/
+
+/*.saveButton {*/
+/*    background: var(--success);*/
+/*    color: var(--bg-dark);*/
+/*}*/
+
+/*.cancelButton {*/
+/*    background: var(--danger);*/
+/*    color: var(--bg-dark);*/
+/*}*/
+
+.logoutButton:hover {
+    box-shadow: none;
+    background: var(--danger);
+    transform: translateY(2px);
+    color: var(--bg);
 }
 
-.editButton:hover {
-    background: var(--secondary);
-}
-
-.saveButton {
-    background: var(--success);
-    color: var(--bg-dark);
+.editButton:hover,
+.adminButton:hover,
+.cancelButton:hover {
+    box-shadow: none;
+    transform: translateY(2px);
 }
 
 .saveButton:hover {
-    background: oklch(0.6 0.05 160);
+    box-shadow: none;
+    transform: translateY(2px);
+    background: var(--success);
+    color: var(--bg);
 }
 
-.cancelButton {
-    background: var(--danger);
-    color: var(--bg-dark);
-}
 
-.cancelButton:hover {
-    background: oklch(0.6 0.05 30);
-}
-
-.editActions {
+.editActions, .buttonGroup {
     display: flex;
     gap: var(--space-sm);
 }
 
+
+/* ===== Statistics ===== */
 .statsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -192,13 +230,12 @@
 
 .statCard {
     background: var(--bg);
-    border: var(--line-sm) solid transparent;
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
     display: flex;
     align-items: center;
     gap: var(--space-md);
-    transition: var(--transition-normal);
+    box-shadow: var(--shadow-sm);
 }
 
 .statCard:hover {
@@ -206,14 +243,22 @@
 }
 
 .statIcon {
-    font-size: var(--text-2xl);
-    width: 48px;
-    height: 48px;
+    width: var(--space-xl);
+    height: var(--space-xl);
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    background-color: var(--text);
+}
+
+.statIconBg {
+    width: var(--space-2xl);
+    height: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    background: var(--bg-dark);
     display: flex;
-    align-items: center;
     justify-content: center;
-    background: var(--bg-light);
-    border-radius: var(--radius-2xl);
+    align-items: center;
+    box-shadow: var(--shadow-xs-inset);
 }
 
 .statContent {
@@ -235,15 +280,9 @@
 
 .serversSection, .actionsSection {
     background: var(--bg);
-    border: var(--line-sm) solid transparent;
     border-radius: var(--radius-xl);
     padding: var(--space-xl);
-    transition: var(--transition-normal);
-}
-
-.serversSection:hover,
-.actionsSection:hover {
-    border: var(--line-sm) solid var(--border-muted);
+    box-shadow: var(--shadow-sm);
 }
 
 .sectionTitle {
@@ -261,19 +300,19 @@
 }
 
 .serverBadge {
-    background: var(--glass);
-    border: var(--line-xs) solid var(--border-muted);
+    background: var(--bg-light);
     border-radius: var(--radius-full);
     padding: var(--space-sm) var(--space-lg);
     font-size: var(--text-sm);
     font-weight: var(--font-medium);
     color: var(--text);
+    box-shadow: var(--shadow-xs);
     transition: var(--transition-fast);
 }
 
 .serverBadge:hover {
-    background: var(--primary);
-    color: var(--bg-dark);
+    transform: translateY(2px);
+    box-shadow: none;
 }
 
 /* Адаптивность */
@@ -288,20 +327,20 @@
     }
 
     .usernameRow {
-        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-xs);
     }
 
     .infoItem {
-        /*display: flex;*/
-        /*text-align: center;*/
-        /*align-items: center;*/
-        /*gap: var(--space-xs);*/
-        /*margin-bottom: var(--space-lg);*/
-        justify-content: center;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: var(--space-md);
     }
 
     .infoLabel {
-        min-width: 150px;
+        min-width: 110px;
     }
 
     .infoSection {
@@ -326,6 +365,10 @@
     {
         justify-content: center;
     }
+
+    .buttonGroup {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -339,11 +382,6 @@
 
     .actionButtons {
         grid-template-columns: 1fr;
-    }
-
-    .infoItem {
-        flex-direction: column;
-        gap: 0;
     }
 
     .infoItem:not(:last-child) {
@@ -363,5 +401,11 @@
     .saveButton, .cancelButton {
         margin: 0;
         width: 100%;
+    }
+
+    .buttonGroup {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
