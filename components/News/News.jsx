@@ -8,8 +8,8 @@ export default function NewsPage() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
 
-    const API_URL = 'http://localhost:8080/api/news' // публичный контроллер новостей
-    const BACKEND_URL = 'http://localhost:8080'       // базовый URL для медиа
+    const API_URL = 'http://localhost:8080/api/news'
+    const BACKEND_URL = 'http://localhost:8080'
 
     useEffect(() => {
         const fetchNews = async () => {
