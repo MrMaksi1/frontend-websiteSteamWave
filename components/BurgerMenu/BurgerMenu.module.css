@@ -1,4 +1,4 @@
-﻿/* Main */
+﻿/* ===== MAIN ===== */
 
 .burgerMenu {
     position: relative;
@@ -7,11 +7,18 @@
     height: var(--space-2xl);
     width: var(--space-2xl);
     border-radius: var(--radius-xl);
-    background: var(--bg-light);
-    border: var(--line-xs) solid var(--border-muted);
+    background: var(--bg-dark);
+    box-shadow: var(--shadow-xs-inset);
+    cursor: pointer;
+    transition: var(--transition-normal);
 }
 
-/* Menu button */
+.burgerMenu:hover {
+    background: var(--bg-light);
+    box-shadow: var(--shadow-xs);
+}
+
+/* ===== MENU BUTTON ===== */
 
 .burgerButton {
     position: relative;
@@ -23,7 +30,6 @@
     background: none;
     border: none;
     cursor: pointer;
-    /*padding: var(--space-xs);*/
     z-index: 1001;
 }
 
@@ -36,7 +42,7 @@
 }
 
 .burgerButtonOpen .burgerLine:nth-child(1) {
-    transform: translate(0, 10px) rotate(45deg) ;
+    transform: translate(0, 11px) rotate(45deg) ;
 }
 
 .burgerButtonOpen .burgerLine:nth-child(2) {
@@ -47,7 +53,7 @@
     transform: translate(0, -10px) rotate(-45deg);
 }
 
-/* Background tint */
+/* ===== BACKGROUND TINT ===== */
 
 .overlay {
     position: fixed;
@@ -55,7 +61,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: var(--bg-dark);
+    background-color: var(--glass-dark);
     z-index: 999;
     transition: var(--transition-normal);
 }
@@ -68,7 +74,7 @@
     left: 0;
     width: 100%;
     height: 0;
-    background-color: var(--bg-dark);
+    background-color: var(--glass-dark);
     z-index: 1000;
     overflow: hidden;
     transition: var(--transition-normal);

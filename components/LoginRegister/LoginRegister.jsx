@@ -36,7 +36,6 @@ export default function LoginRegister() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  /** 🔹 Вспомогательная функция для обновления accessToken */
   const refreshAccessToken = async () => {
     const refreshToken = localStorage.getItem('refreshToken')
     if (!refreshToken) throw new Error('Нет refresh token, войдите снова')
@@ -54,7 +53,6 @@ export default function LoginRegister() {
     return data.accessToken
   }
 
-  /** 🔹 Отправка запроса с автоматическим refresh токена */
   const fetchWithAuth = async (url, options = {}) => {
     let token = localStorage.getItem('accessToken')
     options.headers = { ...(options.headers || {}), 'Authorization': `Bearer ${token}` }
