@@ -51,6 +51,7 @@
     line-height: var(--leading-relaxed);
     resize: vertical;
     outline: none;
+    box-shadow: var(--shadow-xs-inset);
 }
 
 .textarea:focus {
