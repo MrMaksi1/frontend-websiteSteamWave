@@ -39,36 +39,35 @@
 }
 
 .primaryButton {
-    background: var(--primary);
-    color: white;
     padding: var(--space-md) var(--space-2xl);
     border-radius: var(--radius-full);
     text-decoration: none;
     font-weight: var(--font-semibold);
     transition: var(--transition-normal);
+    color: var(--text);
+    background: var(--bg-light);
+    box-shadow: var(--shadow-sm);
 }
 
 .primaryButton:hover {
-    background: var(--secondary);
-    transform: translateY(-2px);
+    box-shadow: none;
+    transform: translateY(2px);
 }
 
 .secondaryButton {
-    background: var(--glass);
-    color: var(--text);
     padding: var(--space-md) var(--space-2xl);
     border-radius: var(--radius-full);
     text-decoration: none;
     font-weight: var(--font-semibold);
-    border: 1px solid var(--border-muted);
     transition: var(--transition-normal);
-    backdrop-filter: var(--blur-md);
+    color: var(--text);
+    background: var(--bg);
+    box-shadow: var(--shadow-sm);
 }
 
 .secondaryButton:hover {
-    background: var(--glass-light);
-    border-color: var(--border);
-    transform: translateY(-2px);
+    box-shadow: none;
+    transform: translateY(2px);
 }
 
 @keyframes bounce {
