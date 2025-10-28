@@ -18,6 +18,11 @@ export default function AdminPage() {
     const USERS_API = 'http://localhost:8080/api/admin/users'
     const NEWS_API = 'http://localhost:8080/api/admin/news'
 
+    const truncateText = (text, maxLength = 150) => {
+        if (text.length <= maxLength) return text
+        return text.substring(0, maxLength) + '...'
+    }
+
     /** ------------------ USERS ------------------ */
     useEffect(() => {
         if (!token) return
@@ -224,8 +229,8 @@ export default function AdminPage() {
                             <tbody>
                                 {news.map(n => (
                                     <tr key={n.id}>
-                                        <td>{n.title}</td>
-                                        <td>{n.content}</td>
+                                        <td>{truncateText(n.title, 80)}</td>
+                                        <td>{truncateText(n.content)}</td>
                                         <td>
                                             {n.mediaUrl && (n.mediaType === 'image' ?
                                                     <img src={n.mediaUrl} alt="media" className={styles.newsMedia}/> :

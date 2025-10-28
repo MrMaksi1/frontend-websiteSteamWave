@@ -11,6 +11,11 @@ export default function NewsPage() {
     const API_URL = 'http://localhost:8080/api/news'
     const BACKEND_URL = 'http://localhost:8080'
 
+    const truncateText = (text, maxLength = 150) => {
+        if (text.length <= maxLength) return text
+        return text.substring(0, maxLength) + '...'
+    }
+
     useEffect(() => {
         const fetchNews = async () => {
             try {
@@ -43,24 +48,28 @@ export default function NewsPage() {
             <div className={styles.newsGrid}>
                 {news.map(post => (
                     <div key={post.id} className={styles.newsCard}>
-                        <h2 className={styles.newsPostTitle}>{post.title}</h2>
-                        <p className={styles.newsContent}>{post.content}</p>
-                        
-                        {post.mediaUrl && post.mediaType === 'image' && (
-                            <img
-                                src={post.mediaUrl}
-                                alt={post.title}
-                                className={styles.newsMedia}
-                            />
-                        )}
+                        <div className={styles.newsMediaContainer}>
+                            {post.mediaUrl && post.mediaType === 'image' && (
+                                <img
+                                    src={post.mediaUrl}
+                                    alt={post.title}
+                                    className={styles.newsMedia}
+                                />
+                            )}
 
-                        {post.mediaUrl && post.mediaType === 'video' && (
-                            <video
-                                src={post.mediaUrl}
-                                controls
-                                className={styles.newsMedia}
-                            />
-                        )}
+                            {post.mediaUrl && post.mediaType === 'video' && (
+                                <video
+                                    src={post.mediaUrl}
+                                    controls
+                                    className={styles.newsMedia}
+                                />
+                            )}
+                        </div>
+
+                        <div className={styles.textOverlay}>
+                            <h2 className={styles.newsPostTitle}>{truncateText(post.title, 50)}</h2>
+                            <p className={styles.newsContent}>{truncateText(post.content)}</p>
+                        </div>
                     </div>
                 ))}
             </div>
