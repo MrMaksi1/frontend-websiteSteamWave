@@ -8,6 +8,7 @@
     margin-bottom: var(--space-2xl);
     text-align: center;
     color: var(--text);
+    overflow-wrap: break-word;
 }
 
 .newsGrid {
@@ -46,6 +47,9 @@
     line-height: var(--leading-normal);
     color: var(--text-muted);
     min-height: var(--space-5xl);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 .newsMedia {

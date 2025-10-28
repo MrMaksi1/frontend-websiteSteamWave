@@ -1,6 +1,6 @@
 import {Geist, Geist_Mono, Montserrat, Outfit, Inter} from "next/font/google";
 import "./globals.css";
-import Head from "next/head";
+import './style/markdown.css';
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ThemeToggle from "@/components/ThemeToggle/ThemeToggle";

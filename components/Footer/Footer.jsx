@@ -49,7 +49,7 @@ export default function Footer() {
                             <ul className={styles.footerList}>
                                 <li><a href="https://t.me/steamwavemc/" className={styles.footerLink}>Telegram</a></li>
                                 <li><a href="https://discord.gg/8gXDRTnupt" className={styles.footerLink}>Discord</a></li>
-                                <li><a href="#" className={styles.footerLink}>YouTube</a></li>
+                                <li><a href="https://www.youtube.com/@steamwavemc" className={styles.footerLink}>YouTube</a></li>
                             </ul>
                         </div>
                     </div>

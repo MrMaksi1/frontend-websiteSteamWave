@@ -73,6 +73,8 @@
     font-size: 14px;
     vertical-align: top;
     color: var(--text);
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 

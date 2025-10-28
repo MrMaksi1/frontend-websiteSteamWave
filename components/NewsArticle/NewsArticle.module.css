@@ -1,0 +1,390 @@
+﻿.newsArticleContainer {
+    padding: var(--space-xl) var(--space-md);
+}
+
+.backButton {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    margin-bottom: var(--space-xl);
+    background: var(--bg);
+    border-radius: var(--radius-xl);
+    color: var(--text);
+    font-size: var(--text-md);
+    font-weight: var(--font-medium);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-xs);
+}
+
+.backButton:hover {
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+.newsArticleCard {
+    border-radius: var(--radius-2xl);
+    transition: var(--transition-normal);
+}
+
+.newsArticleHeader {
+    margin-bottom: var(--space-xl);
+    text-align: left;
+}
+
+.newsArticleTitle {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-black);
+    color: var(--text);
+    margin: 0 0 var(--space-md) 0;
+    line-height: var(--leading-tight);
+}
+
+.newsMeta {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+}
+
+.newsMediaContainer {
+    margin: var(--space-xl) 0;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xs);
+}
+
+.newsArticleMedia {
+    width: 100%;
+    max-height: 800px;
+    display: block;
+    aspect-ratio: 16 / 9;
+}
+
+.newsArticleContent {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--text);
+    margin-top: var(--space-xl);
+}
+
+.newsArticleContent p {
+    margin-bottom: var(--space-xl);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.newsContent strong {
+    color: var(--primary);
+    font-weight: var(--font-bold);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .newsArticleContainer {
+        padding: var(--space-md);
+    }
+
+    .newsArticleCard {
+        padding: var(--space-xl);
+    }
+
+    .newsArticleTitle {
+        font-size: var(--text-2xl);
+    }
+
+    .newsMeta {
+        flex-direction: column;
+        gap: var(--space-sm);
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .newsArticleCard {
+        padding: var(--space-lg);
+    }
+
+    .newsArticleTitle {
+        font-size: var(--text-xl);
+    }
+
+    .newsArticleContent {
+        font-size: var(--text-md);
+    }
+}
+/* Добавьте эти стили в конец файла */
+
+.newsContent {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--text);
+    margin-top: var(--space-xl);
+}
+
+.newsContent h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    margin: var(--space-xl) 0 var(--space-md) 0;
+    color: var(--text);
+}
+
+.newsContent h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+    margin: var(--space-lg) 0 var(--space-md) 0;
+    color: var(--text);
+}
+
+.newsContent h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    margin: var(--space-md) 0 var(--space-sm) 0;
+    color: var(--text);
+}
+
+.newsContent p {
+    margin-bottom: var(--space-lg);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.newsContent strong {
+    color: var(--primary);
+    font-weight: var(--font-bold);
+}
+
+.newsContent em {
+    font-style: italic;
+}
+
+.newsContent a {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.newsContent ul,
+.newsContent ol {
+    margin: var(--space-md) 0;
+    padding-left: var(--space-xl);
+}
+
+.newsContent li {
+    margin-bottom: var(--space-sm);
+}
+
+.newsContent blockquote {
+    border-left: 4px solid var(--primary);
+    padding-left: var(--space-md);
+    margin: var(--space-lg) 0;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.newsContent code {
+    background: var(--bg-light);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.newsContent pre {
+    background: var(--bg-light);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--space-lg) 0;
+}
+
+.newsContent pre code {
+    background: none;
+    padding: 0;
+}
+
+/* ===== CUSTOM COMPONENTS ===== */
+
+/* Заголовки */
+.customH1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-black);
+    color: var(--primary);
+    margin: var(--space-2xl) 0 var(--space-lg) 0;
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: var(--space-sm);
+}
+
+.customH2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    color: var(--text);
+    margin: var(--space-xl) 0 var(--space-md) 0;
+    background: linear-gradient(90deg, var(--primary), transparent);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+}
+
+.customH3 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+    color: var(--text);
+    margin: var(--space-lg) 0 var(--space-sm) 0;
+}
+
+/* Цитаты */
+.customBlockquote {
+    border-left: 6px solid var(--primary);
+    background: var(--bg-light);
+    padding: var(--space-lg);
+    margin: var(--space-xl) 0;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    font-style: italic;
+    position: relative;
+}
+
+.customBlockquote::before {
+    content: '"';
+    font-size: 3rem;
+    color: var(--primary);
+    position: absolute;
+    left: var(--space-md);
+    top: var(--space-sm);
+    opacity: 0.3;
+}
+
+/* Таблицы */
+.tableWrapper {
+    overflow-x: auto;
+    margin: var(--space-lg) 0;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.customTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg);
+}
+
+.customTh {
+    background: var(--primary);
+    color: white;
+    padding: var(--space-md);
+    text-align: left;
+    font-weight: var(--font-semibold);
+    border: 1px solid var(--bg-dark);
+}
+
+.customTd {
+    padding: var(--space-md);
+    border: 1px solid var(--bg-light);
+    background: var(--bg);
+}
+
+.customTable tr:nth-child(even) {
+    background: var(--bg-light);
+}
+
+/* Код */
+.inlineCode {
+    background: var(--bg-dark);
+    color: var(--danger);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    border: 1px solid var(--bg-light);
+}
+
+.blockCode {
+    font-family: 'Courier New', monospace;
+}
+
+.customPre {
+    background: var(--bg-dark) !important;
+    padding: var(--space-lg) !important;
+    border-radius: var(--radius-lg) !important;
+    border-left: 4px solid var(--success) !important;
+    overflow-x: auto !important;
+    margin: var(--space-xl) 0 !important;
+}
+
+/* Списки */
+.customUl, .customOl {
+    margin: var(--space-lg) 0;
+    padding-left: var(--space-2xl);
+}
+
+.customUl {
+    list-style-type: '➤ ';
+}
+
+.customOl {
+    list-style-type: decimal;
+}
+
+.customLi {
+    margin-bottom: var(--space-sm);
+    padding-left: var(--space-sm);
+}
+
+.customUl .customLi::marker {
+    color: var(--primary);
+}
+
+/* Ссылки */
+.customLink {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: var(--font-semibold);
+    border-bottom: 2px dotted var(--primary);
+    transition: var(--transition-fast);
+}
+
+.customLink:hover {
+    color: var(--text);
+    background: var(--primary);
+    border-bottom: 2px solid var(--primary);
+}
+
+/* Параграфы */
+.customParagraph {
+    margin-bottom: var(--space-lg);
+    line-height: var(--leading-relaxed);
+    text-align: justify;
+}
+
+/* Горизонтальная линия */
+.customHr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    margin: var(--space-2xl) 0;
+}
+
+/* Адаптивность для таблиц */
+@media (max-width: 768px) {
+    .tableWrapper {
+        font-size: var(--text-sm);
+    }
+
+    .customTh, .customTd {
+        padding: var(--space-sm);
+    }
+
+    .customH1 {
+        font-size: var(--text-2xl);
+    }
+
+    .customH2 {
+        font-size: var(--text-xl);
+    }
+}

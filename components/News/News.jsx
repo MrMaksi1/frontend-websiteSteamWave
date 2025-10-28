@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import styles from './News.module.css'
+import {useRouter} from "next/navigation";
 
 export default function NewsPage() {
     const [news, setNews] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
+    const router = useRouter()
 
     const API_URL = 'http://localhost:8080/api/news'
     const BACKEND_URL = 'http://localhost:8080'
@@ -16,6 +18,10 @@ export default function NewsPage() {
         return text.substring(0, maxLength) + '...'
     }
 
+    const handleNewsClick = (newsId) => {
+        router.push(`/news/${newsId}`)
+    }
+
     useEffect(() => {
         const fetchNews = async () => {
             try {
@@ -23,10 +29,10 @@ export default function NewsPage() {
                 const data = await res.json()
                 if (!res.ok) throw new Error(data.message || 'Ошибка при загрузке новостей')
 
-                // Преобразуем mediaUrl в полный URL
                 const newsWithFullUrl = data.map(post => ({
                     ...post,
-                    mediaUrl: post.mediaUrl ? `${BACKEND_URL}${post.mediaUrl}` : null
+                    mediaUrl: post.mediaUrl ? `${BACKEND_URL}${post.mediaUrl}` : null,
+                    fullContentUrl: `/news/${post.id}`
                 }))
 
                 setNews(newsWithFullUrl)
@@ -47,7 +53,11 @@ export default function NewsPage() {
             <h1 className={styles.newsTitle}>Новости</h1>
             <div className={styles.newsGrid}>
                 {news.map(post => (
-                    <div key={post.id} className={styles.newsCard}>
+                    <div
+                        key={post.id}
+                        className={styles.newsCard}
+                        onClick={() => handleNewsClick(post.id)}
+                    >
                         <div className={styles.newsMediaContainer}>
                             {post.mediaUrl && post.mediaType === 'image' && (
                                 <img

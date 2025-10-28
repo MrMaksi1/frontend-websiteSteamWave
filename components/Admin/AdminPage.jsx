@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import styles from './AdminPage.module.css'
 import Notification from '@/components/Notification/Notification'
+import MarkdownEditor from '@/components/MarkdownEditor/MarkdownEditor'
 
 export default function AdminPage() {
     const [users, setUsers] = useState([])
@@ -96,7 +97,11 @@ export default function AdminPage() {
         const { name, value, files } = e.target
         if (name === 'media' && files[0]) {
             setNewPost(prev => ({ ...prev, media: files[0], preview: URL.createObjectURL(files[0]) }))
-        } else setNewPost(prev => ({ ...prev, [name]: value }))
+        } else if (name === 'content') {
+            setNewPost(prev => ({ ...prev, content: value }))
+        } else {
+            setNewPost(prev => ({ ...prev, [name]: value }))
+        }
     }
     const handleCreatePost = async () => {
         try {
@@ -202,8 +207,11 @@ export default function AdminPage() {
                         <input className={styles.newsFormTitle} type="text" name="title" placeholder="Заголовок новости" value={newPost.title}
                                onChange={handleNewPostChange}/>
 
-                        <textarea className={styles.newsFormContent} name="content" placeholder="Содержание новости" value={newPost.content}
-                                  onChange={handleNewPostChange}/>
+                        <MarkdownEditor
+                            value={newPost.content}
+                            onChange={(value) => setNewPost(prev => ({ ...prev, content: value }))}
+                            placeholder="Содержание новости (поддерживается Markdown)."
+                        />
 
                         <div className={styles.attachments}>
                             <input className={styles.newsFormMedia} type="file" name="media" onChange={handleNewPostChange}/>
