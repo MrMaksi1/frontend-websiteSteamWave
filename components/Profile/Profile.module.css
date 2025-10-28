@@ -108,12 +108,13 @@
 }
 
 .rankBadge {
-    color: var(--text);
+    color: var(--text-muted);
     padding: var(--space-xs) var(--space-md);
-    border: var(--line-xs) solid var(--border-muted);
     border-radius: var(--radius-full);
     font-size: var(--text-sm);
     font-weight: var(--font-bold);
+    background: var(--bg-light);
+    box-shadow: var(--shadow-xs);
 }
 
 .userInfo {
@@ -157,7 +158,6 @@
 
 .editButton, .saveButton, .cancelButton, .logoutButton, .adminButton {
     padding: var(--space-sm) var(--space-lg);
-    /*border: var(--line-xs) solid var(--border);*/
     background: var(--bg-light);
     color: var(--text-muted);
     box-shadow: var(--shadow-xs);
@@ -167,31 +167,6 @@
     cursor: pointer;
     transition: var(--transition-fast);
 }
-
-/*.editButton {*/
-/*    background: var(--primary);*/
-/*    color: var(--bg-dark);*/
-/*}*/
-
-/*.logoutButton{*/
-/*    background: var(--danger);*/
-/*    color: var(--bg-dark);*/
-/*}*/
-
-/*.adminButton {*/
-/*    background: var(--warning);*/
-/*    color: var(--bg-dark);*/
-/*}*/
-
-/*.saveButton {*/
-/*    background: var(--success);*/
-/*    color: var(--bg-dark);*/
-/*}*/
-
-/*.cancelButton {*/
-/*    background: var(--danger);*/
-/*    color: var(--bg-dark);*/
-/*}*/
 
 .logoutButton:hover {
     box-shadow: none;

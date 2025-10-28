@@ -3,6 +3,7 @@ import "./globals.css";
 import Head from "next/head";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import ThemeToggle from "@/components/ThemeToggle/ThemeToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
     <html lang="ru" className="dark:scheme-dark">
         <body className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${outfit.variable} ${inter.variable} antialiased`}>
             <div className="appContainer">
+                <ThemeToggle/>
                 <Header/>
                 <div className="mainContent">
                     {children}

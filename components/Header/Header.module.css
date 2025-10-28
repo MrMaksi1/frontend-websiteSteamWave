@@ -13,7 +13,7 @@
     backdrop-filter: var(--blur-xs);
     /*border-bottom: var(--line-sm) solid var(--border-muted);*/
     border-radius: var(--radius-3xl);
-    box-shadow: var(--shadow-xs);
+    box-shadow: var(--shadow-sm);
     max-width: 1200px;
     margin: 0 var(--space-sm);
     padding: 0 var(--space-xl);

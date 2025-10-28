@@ -31,10 +31,31 @@
     --success: hsl(146 17% 59%);
     --info: hsl(217 28% 65%);
 
+    /* Semi-transparent backgrounds */
     --glass-dark: oklch(0.1 0.025 253 / 0.8);
     --glass: oklch(0.15 0.025 253 / 0.7);
     --glass-light: oklch(0.2 0.025 253 / 0.6);
+
+    /* Shadows */
+    --shadow-xs:
+            inset 0 1px 1px oklch(from var(--text) l c h / .1),
+            -2px 2px 4px oklch(from var(--bg-dark) l c h / .7),
+            2px -2px 4px oklch(from var(--text) l c h / .08);
+
+    --shadow-sm:
+            inset 0 1px 2px oklch(from var(--text) l c h / .15),
+            -4px 4px 12px oklch(from var(--bg-dark) 0 c h / 1),
+            4px -4px 12px oklch(from var(--text) l c h / .08);
+
+    --shadow-xs-inset:
+            inset -2px 2px 4px oklch(from var(--bg-dark) l c h / .8),
+            inset 2px -2px 4px oklch(from var(--text) l c h / .15);
+
+    --shadow-sm-inset:
+            inset -4px 4px 12px oklch(from var(--bg-dark) l c h / .8),
+            inset 4px -4px 12px oklch(from var(--text) l c h / .15);
 }
+
 body.light {
     /* oklch */
     --bg-dark: oklch(0.92 0.025 253);
@@ -68,9 +89,29 @@ body.light {
     --success: hsl(147 19% 36%);
     --info: hsl(217 22% 41%);
 
+    /* Semi-transparent backgrounds */
     --glass-dark: oklch(0.92 0.025 253 / 0.9);
     --glass: oklch(0.96 0.025 253 / 0.7);
     --glass-light: oklch(1 0.025 253 / 0.5);
+
+    /* Shadows */
+    --shadow-xs:
+            inset 0 2px 4px oklch(from var(--bg) l c h / .3),
+            -2px 2px 4px oklch(from var(--text) l c h / .15),
+            2px -2px 4px oklch(from var(--bg-light) l c h / 1);
+
+    --shadow-sm:
+            inset 0 1px 2px oklch(from var(--bg-light) l c h / .7),
+            -4px 4px 12px oklch(from var(--text) l c h / .15),
+            4px -4px 12px oklch(from var(--bg-light) l c h / .8);
+
+    --shadow-xs-inset:
+            inset -2px 2px 4px oklch(from var(--text) l c h / .15),
+            inset 2px -2px 4px oklch(from var(--bg-light) l c h / .8);
+
+    --shadow-sm-inset:
+            inset -4px 4px 12px oklch(from var(--text) l c h / .15),
+            inset 4px -4px 12px oklch(from var(--bg-light) l c h / .8);
 }
 
 :root{
@@ -137,28 +178,28 @@ body.light {
 
     /* ===== SHADOWS ===== */
     /* offset-x | offset-y | blur-radius | spread-radius | color */
-    --shadow-xs:
-    inset 0 1px 2px oklch(.8 0 0 / .3),
-    0 1px 2px oklch(0 0 0 / .1),
-    0 2px 4px oklch(0 0 0 / .1);
+    /*--shadow-xs:*/
+    /*inset 0 1px 1px oklch(from var(--text) l c h / .17),*/
+    /*-2px 2px 4px oklch(from var(--bg-dark) l c h / .2),*/
+    /*2px -2px 4px oklch(from var(--text) l c h / .15);*/
 
-    --shadow-sm:
-    inset 0 1px 2px oklch(.8 0 0 / .3),
-    0 2px 4px oklch(0 0 0 / .1),
-    0 4px 8px oklch(0 0 0 / .1);
+    /*--shadow-sm:*/
+    /*inset 0 2px 2px oklch(1 0.025 253 / .2),*/
+    /*-6px 6px 12px oklch(0 0.025 253 / .2),*/
+    /*6px -6px 12px oklch(1 0.025 253 / .15);*/
 
-    --shadow-md:
-    inset 0 1px 2px oklch(.8 0 0 / .3),
-    0 4px 8px oklch(0 0 0 / .1),
-    0 8px 16px oklch(0 0 0 / .2);
+    /*--shadow-md:*/
+    /*inset 0 1px 2px oklch(.8 0 0 / .3),*/
+    /*0 4px 8px oklch(0 0 0 / .1),*/
+    /*0 8px 16px oklch(0 0 0 / .2);*/
 
-    --shadow-xs-inset:
-    inset -2px 2px 2px oklch(0 0 0 / .1),
-    inset 1px -1px 4px oklch(.8 0 0 / .3);
+    /*--shadow-xs-inset:*/
+    /*inset -2px 2px 2px oklch(0 0 0 / .1),*/
+    /*inset 1px -1px 4px oklch(.8 0 0 / .3);*/
 
-    --shadow-sm-inset:
-    inset -3px 3px 4px oklch(0 0 0 / .1),
-    inset 2px -2px 6px oklch(.8 0 0 / .3);
+    /*--shadow-sm-inset:*/
+    /*inset -3px 3px 4px oklch(0 0 0 / .1),*/
+    /*inset 2px -2px 6px oklch(.8 0 0 / .3);*/
 
 
     /*--shadow-xs: 0 1px 2px 0 oklch(.8 0 0 / 0.1);*/
