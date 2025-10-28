@@ -33,6 +33,11 @@
     box-shadow: var(--shadow-sm);
 }
 
+.separator {
+    border: var(--line-xs) solid var(--border);
+    margin: var(--space-lg) 0;
+}
+
 /* ===== TABLES ===== */
 
 /* ===== USERS */
@@ -78,7 +83,7 @@
 }
 
 
-/* Зебра */
+/* ===== ZEBRA ===== */
 .table tbody tr:nth-child(even) {
     background: var(--bg-light);
 }
@@ -214,7 +219,6 @@
     color: var(--text);
     box-shadow: var(--shadow-md);
     transition: var(--transition-fast);
-    margin-bottom: var(--space-xl);
 }
 
 .newsFormCreateButton:hover {

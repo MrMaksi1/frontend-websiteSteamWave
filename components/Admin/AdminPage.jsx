@@ -224,6 +224,8 @@ export default function AdminPage() {
                         <button className={styles.newsFormCreateButton} onClick={handleCreatePost}>Создать новость</button>
                     </div>
 
+                    <span className={styles.separator}></span>
+
                     <div className={styles.tableWrapper}>
                         <table className={styles.table}>
                             <thead>
