@@ -1,9 +1,8 @@
 ﻿/* Main */
 
 .footer {
-    background: var(--glass-dark);
-    backdrop-filter: var(--blur-lg);
-    border-top: var(--line-sm) solid var(--border-muted);
+    background: var(--bg-dark);
+    border-top: var(--line-sm) solid var(--border);
     margin-top: auto;
     padding: var(--space-2xl) 0 var(--space-md);
 }

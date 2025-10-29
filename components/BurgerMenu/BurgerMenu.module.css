@@ -2,20 +2,16 @@
 
 .burgerMenu {
     position: relative;
-    background: var(--bg-light);
     padding: var(--space-sm);
     height: var(--space-2xl);
     width: var(--space-2xl);
     border-radius: var(--radius-xl);
-    background: var(--bg-dark);
-    box-shadow: var(--shadow-xs-inset);
     cursor: pointer;
     transition: var(--transition-normal);
 }
 
 .burgerMenu:hover {
-    background: var(--bg-light);
-    box-shadow: var(--shadow-xs);
+    /*background: var(--bg-light);*/
 }
 
 /* ===== MENU BUTTON ===== */
@@ -61,7 +57,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: var(--glass-dark);
+    background-color: var(--bg-dark);
     z-index: 999;
     transition: var(--transition-normal);
 }
@@ -74,7 +70,7 @@
     left: 0;
     width: 100%;
     height: 0;
-    background-color: var(--glass-dark);
+    background-color: var(--bg-dark);
     z-index: 1000;
     overflow: hidden;
     transition: var(--transition-normal);

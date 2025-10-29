@@ -33,7 +33,6 @@ export default function Profile() {
                 const data = await response.json()
                 if (!response.ok) throw new Error(data.message || 'Ошибка при загрузке профиля')
 
-                // Сохраняем только роль в localStorage
                 localStorage.setItem('role', data.role)
 
                 const registrationDate = data.registrationDate

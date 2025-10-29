@@ -139,7 +139,7 @@
 /* ===== LISTS ===== */
 .markdown-content ul,
 .markdown-content ol {
-    margin: var(--space-lg) 0 !important;
+    margin: var(--space-sm) 0 var(--space-lg) !important;
     padding-left: var(--space-2xl) !important;
 }
 

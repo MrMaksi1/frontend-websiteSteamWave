@@ -108,10 +108,16 @@ export default function AdminPage() {
             const formData = new FormData()
             formData.append('title', newPost.title)
             formData.append('content', newPost.content)
+
             if (newPost.media) formData.append('media', newPost.media)
+
             const res = await fetch(NEWS_API, { method: 'POST', headers: { 'Authorization': `Bearer ${token}` }, body: formData })
             const data = await res.json()
+
+            console.log('Ответ от сервера:', data) // Посмотрите какая дата приходит
+
             if (!res.ok) throw new Error(data.message || 'Ошибка при создании новости')
+
             setNews(prev => [data, ...prev])
             setNewPost({ title: '', content: '', media: null, preview: null })
             setNotification({ message: 'Новость создана', type: 'success' })

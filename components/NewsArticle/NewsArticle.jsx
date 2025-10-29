@@ -19,24 +19,63 @@ export default function NewsArticle() {
     const API_URL = `http://localhost:8080/api/news`
     const BACKEND_URL = 'http://localhost:8080'
 
+    const parseDateArray = (dateArray) => {
+        if (!dateArray || !Array.isArray(dateArray)) return null
+
+        try {
+            const [year, month, day, hours, minutes] = dateArray
+
+            return new Date(year, month - 1, day, hours, minutes)
+        } catch (error) {
+            console.error('Ошибка получения даты публикации:', error)
+            return null
+        }
+    }
+
+    const formatDateTime = (date) => {
+        if (!date) return 'Дата не указана'
+
+        try {
+            const dateStr = date.toLocaleDateString('ru-RU', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })
+            const timeStr = date.toLocaleTimeString('ru-RU', {
+                hour: '2-digit',
+                minute: '2-digit'
+            })
+            return `${dateStr}`
+        } catch (error) {
+            console.error('Ошибка форматирования даты:', error)
+            return 'Неверный формат даты'
+        }
+    }
+
     useEffect(() => {
-        const findNewsItem = async () => {
+
+        const fetchNews = async () => {
             try {
-                const res = await fetch(API_URL)
+                const response = await fetch(API_URL, {
+                    method: 'GET'
+                })
 
-                if (!res.ok) throw new Error('Ошибка при загрузке новостей')
+                const data = await response.json()
 
-                const allNews = await res.json()
+                if (!response.ok) throw new Error('Ошибка при загрузке новостей')
 
-                const foundItem = allNews.find(item => item.id == newsId)
+                const foundItem = data.find(item => item.id == newsId)
 
                 if (!foundItem) {
                     throw new Error('Новость не найдена')
                 }
 
+                const creationDate = parseDateArray(foundItem.createdAt);
+
                 const newsWithFullUrl = {
                     ...foundItem,
-                    mediaUrl: foundItem.mediaUrl ? `${BACKEND_URL}${foundItem.mediaUrl}` : null
+                    mediaUrl: foundItem.mediaUrl ? `${BACKEND_URL}${foundItem.mediaUrl}` : null,
+                    createdAt: creationDate
                 }
 
                 setNewsItem(newsWithFullUrl)
@@ -49,7 +88,7 @@ export default function NewsArticle() {
         }
 
         if (newsId) {
-            findNewsItem()
+            fetchNews()
         }
     }, [newsId])
 
@@ -70,8 +109,10 @@ export default function NewsArticle() {
                 <header className={styles.newsArticleHeader}>
                     <h1 className={styles.newsArticleTitle}>{newsItem.title}</h1>
                     <div className={styles.newsMeta}>
-                        {newsItem.createdAt && (
-                            <span>Опубликовано: {new Date(newsItem.createdAt).toLocaleDateString('ru-RU')}</span>
+                        {newsItem.createdAt ? (
+                            <span>{formatDateTime(newsItem.createdAt)}</span>
+                        ) : (
+                            <span>Дата публикации не указана</span>
                         )}
                     </div>
                 </header>

@@ -11,15 +11,24 @@ export default function Header() {
     const pathname = usePathname()
     const [isAuthorized, setIsAuthorized] = useState(false)
     const [mounted, setMounted] = useState(false)
+    const [isScrolled, setIsScrolled] = useState(false)
 
     useEffect(() => {
-        setMounted(true) // Компонент отрендерился на клиенте
+        setMounted(true)
         const token = localStorage.getItem('accessToken')
         setIsAuthorized(!!token)
     }, [])
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 0)
+        }
+
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
     if (!mounted) {
-        // Пока не смонтировалось — не рендерим ничего, чтобы не вызвать конфликт
         return null
     }
 
@@ -33,7 +42,7 @@ export default function Header() {
     ]
 
     return (
-        <header className={styles.header}>
+        <header className={`${styles.header} ${isScrolled ? styles.scrolled : styles.initial}`}>
             <div className={styles.headerContainer}>
                 <nav className={styles.nav}>
                     <Link href="/" className={styles.headerLogo}>
