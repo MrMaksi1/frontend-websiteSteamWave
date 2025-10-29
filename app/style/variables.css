@@ -38,7 +38,7 @@
 
     /* Shadows */
     --shadow-xs:
-            inset 0 2px 4px oklch(from var(--text) 1 c h / .1),
+            inset 0 2px 4px oklch(from var(--text) 1 c h / .15),
             -3px 3px 6px oklch(from var(--bg-dark) l c h / 1),
             2px -2px 6px oklch(from var(--text) l c h / .1);
 

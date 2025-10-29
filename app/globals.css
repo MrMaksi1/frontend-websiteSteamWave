@@ -30,7 +30,7 @@
 body {
   background: var(--bg-dark);
   color: var(--foreground);
-  max-width: 1200px;
+  /*max-width: 1200px;*/
   width: 100%;
   margin: 0 auto;
 }
@@ -43,6 +43,7 @@ main{
   gap: var(--space-xl);
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 
 .appContainer {
@@ -52,7 +53,7 @@ main{
 }
 
 .mainContent {
-  flex: 1 0 auto;
+  flex: 1 auto;
   width: 100%;
 }
 

@@ -10,7 +10,7 @@
 }
 
 .profileContainer {
-    padding: var(--space-xl) var(--space-md);
+    padding: var(--space-3xl) var(--space-xl);
 }
 
 .profileHeader {

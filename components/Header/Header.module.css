@@ -3,9 +3,12 @@
 .header {
     position: sticky;
     top: var(--space-md);
-    width: 100%;
     z-index: 1000;
     transition: var(--transition-normal);
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
 }
 
 .header > * {
@@ -38,7 +41,8 @@
     backdrop-filter: var(--blur-xs);
     border-radius: var(--radius-3xl);
     box-shadow: var(--shadow-sm);
-    max-width: 1200px;
+    /*max-width: inherit;*/
+    width: 100%;
     margin: 0 var(--space-sm);
     padding: 0 var(--space-xl);
     border-bottom: var(--line-sm) solid transparent;

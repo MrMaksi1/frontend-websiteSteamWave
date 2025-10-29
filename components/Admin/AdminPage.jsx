@@ -15,6 +15,8 @@ export default function AdminPage() {
     const [editedData, setEditedData] = useState({ username: '', email: '', role: '' })
     const [newPost, setNewPost] = useState({ title: '', content: '', media: null, preview: null })
 
+    const [activeSection, setActiveSection] = useState('users')
+
     const token = typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null
     const USERS_API = 'http://localhost:8080/api/admin/users'
     const NEWS_API = 'http://localhost:8080/api/admin/news'
@@ -24,14 +26,21 @@ export default function AdminPage() {
         return text.substring(0, maxLength) + '...'
     }
 
+    const adminSections = [
+        { id: 'users', title: 'Игроки', icon: '🫂' },
+        { id: 'news', title: 'Новости', icon: '❗' },
+    ]
+
     /** ------------------ USERS ------------------ */
     useEffect(() => {
         if (!token) return
         const fetchUsers = async () => {
             try {
                 const res = await fetch(USERS_API, { headers: { 'Authorization': `Bearer ${token}` } })
+
                 if (res.status === 403) throw new Error('ONLY ADMIN — доступ запрещён')
                 if (res.status === 401) throw new Error('Не авторизован. Войдите снова.')
+
                 if (!res.ok) throw new Error('Ошибка при загрузке пользователей')
                 const data = await res.json()
                 setUsers(data)
@@ -48,8 +57,10 @@ export default function AdminPage() {
         const fetchNews = async () => {
             try {
                 const res = await fetch(NEWS_API, { headers: { 'Authorization': `Bearer ${token}` } })
+
                 if (res.status === 403) throw new Error('ONLY ADMIN — доступ запрещён')
                 if (res.status === 401) throw new Error('Не авторизован. Войдите снова.')
+
                 if (!res.ok) throw new Error('Ошибка при загрузке новостей')
                 const data = await res.json()
                 setNews(data)

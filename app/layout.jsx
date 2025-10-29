@@ -3,6 +3,7 @@ import "./globals.css";
 import './style/markdown.css';
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import styles from "./Layout.module.css"
 import ThemeToggle from "@/components/ThemeToggle/ThemeToggle";
 
 const geistSans = Geist({
@@ -40,11 +41,13 @@ export default function RootLayout({ children }) {
     return (
     <html lang="ru" className="dark:scheme-dark">
         <body className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${outfit.variable} ${inter.variable} antialiased`}>
-            <div className="appContainer">
-                <Header/>
-                <div className="mainContent">
+            <div className={styles.appContainer}>
+                <Header className={styles.headerWrapper}/>
+
+                <div className={styles.mainContent}>
                     {children}
                 </div>
+
                 <Footer/>
             </div>
         </body>
