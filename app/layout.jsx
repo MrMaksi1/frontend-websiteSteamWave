@@ -41,7 +41,6 @@ export default function RootLayout({ children }) {
     <html lang="ru" className="dark:scheme-dark">
         <body className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${outfit.variable} ${inter.variable} antialiased`}>
             <div className="appContainer">
-                <ThemeToggle/>
                 <Header/>
                 <div className="mainContent">
                     {children}
