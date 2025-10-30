@@ -285,7 +285,7 @@
     box-shadow: none;
 }
 
-/* Адаптивность */
+/* ===== MEDIA QUERIES ===== */
 @media (max-width: 768px) {
     .profileCard {
         flex-direction: column;

@@ -13,29 +13,26 @@
 
 .adminContainer {
     padding: var(--space-3xl) var(--space-md);
-}
-
-.adminContent {
-    max-width: var(--container-6xl);
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
+    width: 100%;
+    max-width: none !important; /* Принудительно убираем ограничение */
+    margin: 0 !important;
 }
 
 .contentSection {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     background: var(--bg);
     border-radius: var(--radius-xl);
     padding: var(--space-xl);
     gap: var(--space-xl);
     transition: var(--transition-normal);
     box-shadow: var(--shadow-sm);
+    width: 100%; /* Занимает всю ширину */
 }
 
 .separator {
     border: var(--line-xs) solid var(--border);
-    margin: var(--space-lg) 0;
+    margin: var(--space-lg) var(--space-xl);
 }
 
 /* ===== TABLES ===== */
@@ -148,6 +145,7 @@
     background-color: var(--danger);
 }
 
+
 /* ===== NEWS */
 .newsMedia {
     max-width: 200px;
@@ -168,7 +166,6 @@
     padding: var(--space-sm);
     color: var(--text);
     font-size: var(--text-md);
-    width: 100%;
     box-shadow: var(--shadow-xs-inset);
 }
 
@@ -217,7 +214,7 @@
     font-weight: var(--font-semibold);
     background: var(--bg-light);
     color: var(--text);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-xs);
     transition: var(--transition-fast);
 }
 

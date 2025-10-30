@@ -5,7 +5,7 @@ import styles from './AdminPage.module.css'
 import Notification from '@/components/Notification/Notification'
 import MarkdownEditor from '@/components/MarkdownEditor/MarkdownEditor'
 
-export default function AdminPage() {
+export default function AdminPage({ activeSection = 'users' }) { // Принимаем activeSection как пропс
     const [users, setUsers] = useState([])
     const [news, setNews] = useState([])
     const [loading, setLoading] = useState(true)
@@ -15,8 +15,6 @@ export default function AdminPage() {
     const [editedData, setEditedData] = useState({ username: '', email: '', role: '' })
     const [newPost, setNewPost] = useState({ title: '', content: '', media: null, preview: null })
 
-    const [activeSection, setActiveSection] = useState('users')
-
     const token = typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null
     const USERS_API = 'http://localhost:8080/api/admin/users'
     const NEWS_API = 'http://localhost:8080/api/admin/news'
@@ -25,11 +23,6 @@ export default function AdminPage() {
         if (text.length <= maxLength) return text
         return text.substring(0, maxLength) + '...'
     }
-
-    const adminSections = [
-        { id: 'users', title: 'Игроки', icon: '🫂' },
-        { id: 'news', title: 'Новости', icon: '❗' },
-    ]
 
     /** ------------------ USERS ------------------ */
     useEffect(() => {
@@ -125,7 +118,7 @@ export default function AdminPage() {
             const res = await fetch(NEWS_API, { method: 'POST', headers: { 'Authorization': `Bearer ${token}` }, body: formData })
             const data = await res.json()
 
-            console.log('Ответ от сервера:', data) // Посмотрите какая дата приходит
+            console.log('Ответ от сервера:', data)
 
             if (!res.ok) throw new Error(data.message || 'Ошибка при создании новости')
 
@@ -154,9 +147,8 @@ export default function AdminPage() {
                 <h1 className={styles.adminTitle}>Админ-панель</h1>
             </div>
 
-            <div className={styles.adminContent}>
-
-                {/* ===== USERS ===== */}
+            {/* ===== USERS ===== */}
+            {activeSection === 'users' && (
                 <section className={styles.contentSection}>
                     <div className={styles.tableHeader}>
                         <h2>Пользователи</h2>
@@ -214,8 +206,10 @@ export default function AdminPage() {
                         </table>
                     </div>
                 </section>
+            )}
 
-                {/* ===== NEWS ===== */}
+            {/* ===== NEWS ===== */}
+            {activeSection === 'news' && (
                 <section className={styles.contentSection}>
                     <div className={styles.tableHeader}>
                         <h2>Новости</h2>
@@ -246,34 +240,34 @@ export default function AdminPage() {
                     <div className={styles.tableWrapper}>
                         <table className={styles.table}>
                             <thead>
-                                <tr>
-                                    <th>Заголовок</th>
-                                    <th>Содержание</th>
-                                    <th>Медиа</th>
-                                    <th>Действия</th>
-                                </tr>
+                            <tr>
+                                <th>Заголовок</th>
+                                <th>Содержание</th>
+                                <th>Медиа</th>
+                                <th>Действия</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {news.map(n => (
-                                    <tr key={n.id}>
-                                        <td>{truncateText(n.title, 80)}</td>
-                                        <td>{truncateText(n.content)}</td>
-                                        <td>
-                                            {n.mediaUrl && (n.mediaType === 'image' ?
-                                                    <img src={n.mediaUrl} alt="media" className={styles.newsMedia}/> :
-                                                    <video src={n.mediaUrl} controls className={styles.newsMedia}/>
-                                            )}
-                                        </td>
-                                        <td><button onClick={() =>
-                                            handleDeleteNews(n.id)} className={styles.deleteButton}>Удалить
-                                        </button></td>
-                                    </tr>
-                                ))}
+                            {news.map(n => (
+                                <tr key={n.id}>
+                                    <td>{truncateText(n.title, 80)}</td>
+                                    <td>{truncateText(n.content)}</td>
+                                    <td>
+                                        {n.mediaUrl && (n.mediaType === 'image' ?
+                                                <img src={n.mediaUrl} alt="media" className={styles.newsMedia}/> :
+                                                <video src={n.mediaUrl} controls className={styles.newsMedia}/>
+                                        )}
+                                    </td>
+                                    <td><button onClick={() =>
+                                        handleDeleteNews(n.id)} className={styles.deleteButton}>Удалить
+                                    </button></td>
+                                </tr>
+                            ))}
                             </tbody>
                         </table>
                     </div>
                 </section>
-            </div>
+            )}
 
             {notification && <Notification message={notification.message} type={notification.type} duration={3000} onClose={() =>
                 setNotification(null)}/>}
