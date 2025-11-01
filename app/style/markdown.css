@@ -179,7 +179,7 @@
 
 /* ===== PARAGRAPHS ===== */
 .markdown-content p {
-    margin-bottom: var(--space-xs) !important;
+    margin-bottom: var(--space-md) !important;
     line-height: var(--leading-normal);
     text-align: justify;
     color: var(--text-muted);
