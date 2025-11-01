@@ -46,6 +46,10 @@ main{
   margin: 0 auto;
 }
 
+a {
+  text-decoration: none;
+}
+
 .appContainer {
   display: flex;
   flex-direction: column;

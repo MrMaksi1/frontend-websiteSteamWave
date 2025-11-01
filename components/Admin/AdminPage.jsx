@@ -5,7 +5,7 @@ import styles from './AdminPage.module.css'
 import Notification from '@/components/Notification/Notification'
 import MarkdownEditor from '@/components/MarkdownEditor/MarkdownEditor'
 
-export default function AdminPage({ activeSection = 'users' }) { // Принимаем activeSection как пропс
+export default function AdminPage({ activeSection = 'users' }) {
     const [users, setUsers] = useState([])
     const [news, setNews] = useState([])
     const [loading, setLoading] = useState(true)
@@ -19,12 +19,52 @@ export default function AdminPage({ activeSection = 'users' }) { // Приним
     const USERS_API = 'http://localhost:8080/api/admin/users'
     const NEWS_API = 'http://localhost:8080/api/admin/news'
 
+    /** ----- NEWS EDITING ----- */
+    const [editingNewsId, setEditingNewsId] = useState(null)
+    const [editNewsData, setEditNewsData] = useState({ title: '', content: '', media: null, preview: null })
+
     const truncateText = (text, maxLength = 150) => {
         if (text.length <= maxLength) return text
         return text.substring(0, maxLength) + '...'
     }
 
+    const parseDateArray = (dateArray) => {
+        if (!dateArray || !Array.isArray(dateArray)) return null
+
+        try {
+            const [year, month, day, hours, minutes, seconds] = dateArray
+
+            return new Date(year, month - 1, day, hours, minutes, seconds)
+        } catch (error) {
+            console.error('Ошибка получения даты публикации:', error)
+            return null
+        }
+    }
+
+    const formatDateTime = (date) => {
+        if (!date) return 'Дата не указана'
+
+        try {
+            const dateStr = date.toLocaleDateString('ru-RU', {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric'
+            })
+            const timeStr = date.toLocaleTimeString('ru-RU', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            })
+            return `${dateStr} \n ${timeStr}`
+        } catch (error) {
+            console.error('Ошибка форматирования даты:', error)
+            return 'Неверный формат даты'
+        }
+    }
+
+
     /** ------------------ USERS ------------------ */
+
     useEffect(() => {
         if (!token) return
         const fetchUsers = async () => {
@@ -44,7 +84,9 @@ export default function AdminPage({ activeSection = 'users' }) { // Приним
         fetchUsers()
     }, [token])
 
+
     /** ------------------ NEWS ------------------ */
+
     useEffect(() => {
         if (!token) return
         const fetchNews = async () => {
@@ -56,13 +98,18 @@ export default function AdminPage({ activeSection = 'users' }) { // Приним
 
                 if (!res.ok) throw new Error('Ошибка при загрузке новостей')
                 const data = await res.json()
+
+                console.log(data)
+
                 setNews(data)
             } catch (err) { setError(err.message) }
         }
         fetchNews()
     }, [token])
 
+
     /** ------------------ USER ACTIONS ------------------ */
+
     const handleEditClick = (user) => {
         setEditingUserId(user.id)
         setEditedData({ username: user.username, email: user.email, role: user.role })
@@ -99,12 +146,15 @@ export default function AdminPage({ activeSection = 'users' }) { // Приним
     /** ------------------ NEWS ACTIONS ------------------ */
     const handleNewPostChange = (e) => {
         const { name, value, files } = e.target
+        const targetData = editingNewsId ? editNewsData : newPost
+        const setter = editingNewsId ? setEditNewsData : setNewPost
+
         if (name === 'media' && files[0]) {
-            setNewPost(prev => ({ ...prev, media: files[0], preview: URL.createObjectURL(files[0]) }))
+            setter(prev => ({ ...prev, media: files[0], preview: URL.createObjectURL(files[0]) }))
         } else if (name === 'content') {
-            setNewPost(prev => ({ ...prev, content: value }))
+            setter(prev => ({ ...prev, content: value }))
         } else {
-            setNewPost(prev => ({ ...prev, [name]: value }))
+            setter(prev => ({ ...prev, [name]: value }))
         }
     }
     const handleCreatePost = async () => {
@@ -136,6 +186,77 @@ export default function AdminPage({ activeSection = 'users' }) { // Приним
             setNotification({ message: 'Новость удалена', type: 'success' })
         } catch (err) { setNotification({ message: err.message, type: 'error' }) }
     }
+
+
+    /** ------------------ NEWS EDITING ------------------ */
+    const handleEditNews = async (id) => {
+        try {
+            const res = await fetch(`http://localhost:8080/api/news`, {
+                method: 'GET'
+            })
+
+            if (!res.ok) throw new Error('Ошибка при загрузке новостей')
+
+            const data = await res.json()
+            const foundItem = data.find(item => item.id == id)
+
+            if (!foundItem) throw new Error('Новость не найдена')
+
+            setEditingNewsId(id)
+            setEditNewsData({
+                title: foundItem.title,
+                content: foundItem.content,
+                media: null,
+                preview: foundItem.mediaUrl ? `http://localhost:8080${foundItem.mediaUrl}` : null
+            })
+            setNewPost({ title: '', content: '', media: null, preview: null })
+        } catch (err) {
+            console.error('Edit news error:', err)
+            setNotification({ message: `Ошибка загрузки: ${err.message}`, type: 'error' })
+        }
+    }
+
+    const handleUpdateNews = async () => {
+        if (!editingNewsId) return
+
+        try {
+            const formData = new FormData()
+            formData.append('title', editNewsData.title)
+            formData.append('content', editNewsData.content)
+
+            if (editNewsData.media) {
+                formData.append('media', editNewsData.media)
+            }
+
+            const res = await fetch(`${NEWS_API}/${editingNewsId}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            })
+
+            if (!res.ok) {
+                throw new Error(`Ошибка ${res.status}`)
+            }
+
+            const data = await res.json()
+
+            setNews(prev => prev.map(n => n.id === editingNewsId ? data : n))
+            setEditingNewsId(null)
+            setEditNewsData({ title: '', content: '', media: null, preview: null })
+            setNotification({ message: 'Новость обновлена', type: 'success' })
+        } catch (err) {
+            console.error('Update news error:', err)
+            setNotification({ message: `Ошибка обновления: ${err.message}`, type: 'error' })
+        }
+    }
+
+    const handleCancelEditNews = () => {
+        setEditingNewsId(null)
+        setEditNewsData({ title: '', content: '', media: null, preview: null })
+    }
+
 
     /** ------------------ RENDER ------------------ */
     if (loading) return <div className={styles.adminContainer}>Загрузка...</div>
@@ -182,21 +303,27 @@ export default function AdminPage({ activeSection = 'users' }) { // Приним
                                     <td>
                                         {editingUserId === user.id ? (
                                             <>
-                                                <button onClick={() =>
-                                                    handleSave(user.id)} className={styles.saveButton}>Сохранить
-                                                </button>
+                                                <div className={styles.buttonContainer}>
+                                                    <button onClick={handleCancelEdit} className={styles.cancelButton}>
+                                                        Отмена
+                                                    </button>
 
-                                                <button onClick={handleCancelEdit} className={styles.cancelButton}>Отмена</button>
+                                                    <button onClick={() =>
+                                                        handleSave(user.id)} className={styles.saveButton}>Сохранить
+                                                    </button>
+                                                </div>
                                             </>
                                         ) : (
                                             <>
-                                                <button onClick={() =>
-                                                    handleEditClick(user)} className={styles.editButton}>Редактировать
-                                                </button>
+                                                <div className={styles.buttonContainer}>
+                                                    <button onClick={() =>
+                                                        handleEditClick(user)} className={styles.editButton}>Редактировать
+                                                    </button>
 
-                                                <button onClick={() =>
-                                                    handleDelete(user.id)} className={styles.deleteButton}>Удалить
-                                                </button>
+                                                    <button onClick={() =>
+                                                        handleDelete(user.id)} className={styles.deleteButton}>Удалить
+                                                    </button>
+                                                </div>
                                             </>
                                         )}
                                     </td>
@@ -215,34 +342,65 @@ export default function AdminPage({ activeSection = 'users' }) { // Приним
                         <h2>Новости</h2>
                     </div>
                     <div className={styles.newsForm}>
-                        <input className={styles.newsFormTitle} type="text" name="title" placeholder="Заголовок новости" value={newPost.title}
-                               onChange={handleNewPostChange}/>
+                        <input
+                            className={styles.newsFormTitle}
+                            type="text"
+                            name="title"
+                            placeholder="Заголовок новости"
+                            value={editingNewsId ? editNewsData.title : newPost.title}
+                            onChange={handleNewPostChange}
+                        />
 
                         <MarkdownEditor
-                            value={newPost.content}
-                            onChange={(value) => setNewPost(prev => ({ ...prev, content: value }))}
+                            value={editingNewsId ? editNewsData.content : newPost.content}
+                            onChange={(value) => {
+                                const setter = editingNewsId ? setEditNewsData : setNewPost
+                                setter(prev => ({ ...prev, content: value }))
+                            }}
                             placeholder="Содержание новости (поддерживается Markdown)."
                         />
 
                         <div className={styles.attachments}>
-                            <input className={styles.newsFormMedia} type="file" name="media" onChange={handleNewPostChange}/>
-                            {newPost.preview && (newPost.media.type.startsWith('image') ?
-                                    <img src={newPost.preview} alt="preview" className={styles.previewMedia}/> :
-                                    <video src={newPost.preview} controls className={styles.previewMedia}/>
-                            )}
+                            <input
+                                className={styles.newsFormMedia}
+                                type="file"
+                                name="media"
+                                onChange={handleNewPostChange}
+                            />
+                            {(editingNewsId ? editNewsData.preview : newPost.preview) &&
+                                ((editingNewsId ? editNewsData.media?.type : newPost.media?.type)?.startsWith('image') ?
+                                        <img src={editingNewsId ? editNewsData.preview : newPost.preview} alt="preview" className={styles.previewMedia}/> :
+                                        <video src={editingNewsId ? editNewsData.preview : newPost.preview} controls className={styles.previewMedia}/>
+                                )
+                            }
                         </div>
 
-                        <button className={styles.newsFormCreateButton} onClick={handleCreatePost}>Создать новость</button>
+                        <div className={styles.newsFormActions}>
+                            {editingNewsId ? (
+                                <>
+                                    <button className={styles.newsFormUpdateButton} onClick={handleUpdateNews}>
+                                        Обновить новость
+                                    </button>
+                                    <button className={styles.newsFormCancelButton} onClick={handleCancelEditNews}>
+                                        Отмена
+                                    </button>
+                                </>
+                            ) : (
+                                <button className={styles.newsFormCreateButton} onClick={handleCreatePost}>
+                                    Создать новость
+                                </button>
+                            )}
+                        </div>
                     </div>
 
                     <span className={styles.separator}></span>
 
                     <div className={styles.tableWrapper}>
-                        <table className={styles.table}>
+                        <table className={`${styles.table} ${styles.newsTable}`}>
                             <thead>
                             <tr>
+                                <th>Дата</th>
                                 <th>Заголовок</th>
-                                <th>Содержание</th>
                                 <th>Медиа</th>
                                 <th>Действия</th>
                             </tr>
@@ -250,17 +408,24 @@ export default function AdminPage({ activeSection = 'users' }) { // Приним
                             <tbody>
                             {news.map(n => (
                                 <tr key={n.id}>
-                                    <td>{truncateText(n.title, 80)}</td>
-                                    <td>{truncateText(n.content)}</td>
+                                    <td>{formatDateTime(parseDateArray(n.createdAt))}</td>
+                                    <td><a href={`/news/${n.id}`}>{truncateText(n.title, 80)}</a></td>
                                     <td>
                                         {n.mediaUrl && (n.mediaType === 'image' ?
                                                 <img src={n.mediaUrl} alt="media" className={styles.newsMedia}/> :
                                                 <video src={n.mediaUrl} controls className={styles.newsMedia}/>
                                         )}
                                     </td>
-                                    <td><button onClick={() =>
-                                        handleDeleteNews(n.id)} className={styles.deleteButton}>Удалить
-                                    </button></td>
+                                    <td>
+                                        <div className={styles.buttonContainer}>
+                                            <button onClick={() => handleEditNews(n.id)} className={styles.editButton}>
+                                                Редактировать
+                                            </button>
+                                            <button onClick={() => handleDeleteNews(n.id)} className={styles.deleteButton}>
+                                                Удалить
+                                            </button>
+                                        </div>
+                                    </td>
                                 </tr>
                             ))}
                             </tbody>

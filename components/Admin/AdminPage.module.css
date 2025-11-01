@@ -13,9 +13,9 @@
 
 .adminContainer {
     padding: var(--space-3xl) var(--space-md);
-    width: 100%;
-    max-width: none !important; /* Принудительно убираем ограничение */
-    margin: 0 !important;
+    max-width: var(--container-6xl);
+    margin: 0 auto !important;
+    justify-content: center;
 }
 
 .contentSection {
@@ -27,7 +27,7 @@
     gap: var(--space-xl);
     transition: var(--transition-normal);
     box-shadow: var(--shadow-sm);
-    width: 100%; /* Занимает всю ширину */
+    width: 100%;
 }
 
 .separator {
@@ -35,79 +35,13 @@
     margin: var(--space-lg) var(--space-xl);
 }
 
-/* ===== TABLES ===== */
-
-/* ===== USERS */
-.tableHeader {
-    color: var(--text-muted);
-    font-size: var(--text-2xl);
-    font-weight: var(--font-bold);
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
 }
 
-.tableWrapper {
-    max-height: 800px;
-    overflow-y: auto;
-}
-
-.table {
-    width: 100%;
-}
-
-.table thead {
-    position: sticky;
-    top: 0;
-    box-shadow: var(--shadow-sm);
-}
-
-.table thead th {
-    font-weight: var(--font-semibold);
-    font-size: var(--text-md);
-    text-align: left;
-    padding: var(--space-sm) var(--space-md);
-    background: var(--bg-light);
-    color: var(--text-muted);
-    height: var(--space-3xl);
-}
-
-.table tbody td {
-    text-align: left;
-    padding: var(--space-md) var(--space-md);
-    font-size: 14px;
-    vertical-align: top;
-    color: var(--text);
-    overflow-wrap: break-word;
-    word-break: break-word;
-}
-
-
-/* ===== ZEBRA ===== */
-.table tbody tr:nth-child(even) {
-    background: var(--bg-light);
-}
-
-.table tbody tr:last-child {
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-    border-bottom: var(--line-sm) solid var(--bg-light);
-}
-
-.editInput,
-.editSelect {
-    background: var(--bg-light);
-    border-radius: var(--radius-xl);
-    padding: var(--space-sm);
-    color: var(--text);
-    font-size: var(--text-md);
-    width: 100%;
-    max-width: 200px;
-    box-shadow: var(--shadow-xs-inset);
-}
-
-.editInput:focus,
-.editSelect:focus {
-    outline: none;
-    background: var(--bg-dark);
-}
-
+/* ===== BUTTONS ===== */
 .editButton,
 .saveButton,
 .cancelButton,
@@ -132,17 +66,119 @@
     background: var(--bg-dark);
 }
 
-.editButton,
-.saveButton {
-    margin-right: var(--space-sm);
-}
-
 .saveButton:hover {
     background-color: var(--success);
+    color: var(--bg-light);
 }
 
 .deleteButton:hover {
     background-color: var(--danger);
+    color: var(--bg-light);
+}
+
+.newsFormCreateButton,
+.newsFormUpdateButton,
+.newsFormCancelButton {
+    padding: var(--space-md) var(--space-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    background: var(--bg-light);
+    color: var(--text);
+    box-shadow: var(--shadow-xs);
+    transition: var(--transition-fast);
+    width: 100%;
+}
+
+.newsFormCreateButton:hover,
+.newsFormUpdateButton:hover,
+.newsFormCancelButton:hover {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+.newsFormUpdateButton:hover {
+    background: var(--success);
+    color: var(--bg-light);
+}
+
+.newsFormActions {
+    display: flex;
+    gap: var(--space-md);
+}
+
+/* ===== TABLES ===== */
+
+/* ===== USERS */
+.tableHeader {
+    color: var(--text-muted);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+}
+
+.tableWrapper {
+    max-height: 800px;
+    overflow-y: auto;
+}
+
+.table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table thead {
+    position: sticky;
+    top: 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.table tbody {
+
+}
+
+.table thead th {
+    font-weight: var(--font-semibold);
+    font-size: var(--text-md);
+    text-align: left;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-light);
+    color: var(--text-muted);
+    height: var(--space-3xl);
+}
+
+.table thead th:nth-child(1) { width: 10%; }
+.table thead th:nth-child(2) { width: 15%; }
+.table thead th:nth-child(3) { width: 30%; }
+.table thead th:nth-child(4) { width: 15%; }
+.table thead th:nth-child(5) { width: 20%; }
+
+.table tbody td {
+    text-align: left;
+    padding: var(--space-md) var(--space-md);
+    font-size: var(--text-lg);
+    vertical-align: top;
+    color: var(--text);
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.editInput,
+.editSelect {
+    background: var(--bg-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-sm);
+    color: var(--text);
+    font-size: var(--text-md);
+    width: 100%;
+    max-width: 200px;
+    box-shadow: var(--shadow-xs-inset);
+}
+
+.editInput:focus,
+.editSelect:focus {
+    outline: none;
+    background: var(--bg-dark);
 }
 
 
@@ -206,19 +242,29 @@
     border-radius: var(--radius-xl);
 }
 
-.newsFormCreateButton {
-    padding: var(--space-md) var(--space-md);
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    font-size: var(--text-lg);
+.table.newsTable a{
+    text-decoration: none !important;
     font-weight: var(--font-semibold);
-    background: var(--bg-light);
-    color: var(--text);
-    box-shadow: var(--shadow-xs);
-    transition: var(--transition-fast);
+    border-bottom: var(--line-sm) dashed var(--primary);
+    transition: var(--transition-fast) !important;
 }
 
-.newsFormCreateButton:hover {
-    transform: translateY(2px);
-    box-shadow: none;
+.table.newsTable a:hover{
+    border-bottom: var(--line-sm) solid var(--secondary);
+}
+
+.table.newsTable thead th:nth-child(1) { width: 15%; }
+.table.newsTable thead th:nth-child(2) { width: 50%; }
+.table.newsTable thead th:nth-child(3) { width: 20%; }
+.table.newsTable thead th:nth-child(4) { width: 15%; }
+
+
+/* ===== ZEBRA ===== */
+.table tbody tr:nth-child(even) {
+    background: var(--bg-light);
+}
+
+.table tbody tr:last-child {
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    border-bottom: var(--line-sm) solid var(--bg-light);
 }

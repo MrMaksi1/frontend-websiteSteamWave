@@ -165,24 +165,25 @@
 /* ===== LINKS ===== */
 .markdown-content a {
     color: var(--primary);
-    text-decoration: none;
+    text-decoration: none !important;
     font-weight: var(--font-semibold);
-    border-bottom: 2px dotted var(--primary);
-    transition: var(--transition-fast);
+    border-bottom: var(--line-sm) dashed var(--primary);
+    transition: var(--transition-fast) !important;
 }
 
 .markdown-content a:hover {
     color: var(--text);
-    background: var(--primary);
-    border-bottom: 2px solid var(--primary);
+    /*background: var(--primary);*/
+    border-bottom: var(--line-sm) solid var(--secondary);
 }
 
 /* ===== PARAGRAPHS ===== */
 .markdown-content p {
-    margin-bottom: 0 !important;
-    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-xs) !important;
+    line-height: var(--leading-normal);
     text-align: justify;
     color: var(--text-muted);
+    font-size: var(--text-xl);
 }
 
 .markdown-content strong, b {
