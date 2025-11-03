@@ -6,6 +6,7 @@ import styles from './NewsArticle.module.css'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
+import Head from "next/head";
 
 export default function NewsArticle() {
     const [newsItem, setNewsItem] = useState(null)

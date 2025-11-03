@@ -2,31 +2,34 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import styles from "./MainPage.module.css"
 
 export default function Home() {
   return (
       <main>
-          <div className="container">
-              <section className="hero-section">
-                  <div className="content">
-                      <div className="hero-section-image">
-                          <Image src={"/screenshot-6.png"} alt={"next"} width={100} height={100}/>
+          <div className={styles.container}>
+              <div className={styles.heroSection}>
+                  <div className={styles.heroTop}>
+                      <div className={styles.heroImage}>
+                          <Image src={"/screenshot-6.png"} alt={"next"} width={1920} height={1080}/>
                       </div>
-                      <div className="hero-section-text">
-                          <h1>Create</h1>
-                          <p>Сервер, где во главе угла стоит Create и его пешки. Никакого электричества, чистая механика.</p>
-                          <div className="hero-buttons">
-                              <Link href="/play" className="hero-button">Начать играть</Link>
-                          </div>
+
+                      <div className={styles.heroTopText}>
+                          <h1 className={styles.heroTitle}>steamwave</h1>
+                          <p>steamwave — это мир, где технологии встречаются с искусством. Наш проект построен вокруг мода Create, открывающего безграничные возможности для творчества и раскрытия своего инженерного потенциала.</p>
                       </div>
                   </div>
-              </section>
+
+                  <div className={styles.heroContent}>
+                      <div className={styles.heroSubtitle}>
+                          <p>Мы создали пространство для тех, кто любит имаджинировать, проектировать и медитировать, создавая невообразимые проекты, наполненные красотой и механикой.</p>
+                      </div>
+                      <Link className={styles.heroButton} href="/play">
+                          Начать играть
+                      </Link>
+                  </div>
+              </div>
           </div>
       </main>
-    // <div className="page font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-    //   <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-    //
-    //   </main>
-    // </div>
   );
 }

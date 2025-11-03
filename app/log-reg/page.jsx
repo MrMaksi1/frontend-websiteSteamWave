@@ -2,6 +2,12 @@
 import Link from "next/link";
 import LoginRegister from '@/components/LoginRegister/LoginRegister'
 
+export const metadata = {
+    title: 'Авторизация — steamwave',
+    description: 'Авторизация в личный кабинет проекта',
+}
+
+
 export default function Home() {
     return (
         <main>

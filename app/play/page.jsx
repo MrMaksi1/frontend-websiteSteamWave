@@ -1,6 +1,11 @@
 ﻿import DownloadButtons from '@/components/DownloadButtons/DownloadButtons'
 import styles from './page.module.css'
 
+export const metadata = {
+    title: 'Начать играть — steamwave',
+    description: 'Скачать лаунчер steamwave для вашей платформы',
+}
+
 export default function PlayPage() {
     return (
         <div className={styles.container}>
@@ -24,9 +29,4 @@ export default function PlayPage() {
             {/*</div>*/}
         </div>
     )
-}
-
-export const metadata = {
-    title: 'Скачать лаунчер - STEAMWAVE',
-    description: 'Скачайте лаунчер для игры на сервере STEAMWAVE',
 }

@@ -108,7 +108,7 @@ body.light {
     --shadow-sm:
             inset 0 2px 4px oklch(from var(--bg-light) 1 c h / .7),
             -4px 4px 8px oklch(from var(--text) l c h / .3),
-            4px -4px 8px oklch(from var(--bg-light) l c h / 1);
+            2px -2px 8px oklch(from var(--bg-light) l c h / .9);
 
     --shadow-md:
             inset 0 2px 4px oklch(from var(--bg-light) l c h / .7),
