@@ -76,7 +76,7 @@ export default function Header() {
                         <Link href="/profile" className={`${styles.headerProfile} ${isActive('/profile') ? 'active' : ''}`}>
                             <img
                                 className={styles.headerProfileImage}
-                                src="https://minotar.net/helm/kotean_st/32.png"
+                                src="/public/icon.png"
                                 alt="Profile picture"
                             />
                         </Link>
