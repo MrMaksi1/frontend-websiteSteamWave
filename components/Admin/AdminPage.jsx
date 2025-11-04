@@ -192,7 +192,7 @@ export default function AdminPage({ activeSection = 'users' }) {
     /** ------------------ NEWS EDITING ------------------ */
     const handleEditNews = async (id) => {
         try {
-            const res = await fetch(`http://localhost:8080/api/news`, {
+            const res = await fetch(`${API_URL}/news`, {
                 method: 'GET'
             })
 
@@ -208,7 +208,7 @@ export default function AdminPage({ activeSection = 'users' }) {
                 title: foundItem.title,
                 content: foundItem.content,
                 media: null,
-                preview: foundItem.mediaUrl ? `http://localhost:8080${foundItem.mediaUrl}` : null
+                preview: foundItem.mediaUrl ? `${API_URL}/${foundItem.mediaUrl}` : null
             })
             setNewPost({ title: '', content: '', media: null, preview: null })
         } catch (err) {
