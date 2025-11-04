@@ -83,8 +83,6 @@
 .nav {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     height: 100%;
     padding: 0 var(--space-lg);
 }
@@ -118,7 +116,7 @@
 
 @media (max-width: 768px) {
     .menuOpen {
-        height: 468px;
+        height: 668px;
         padding-top: var(--space-4xl);
     }
 

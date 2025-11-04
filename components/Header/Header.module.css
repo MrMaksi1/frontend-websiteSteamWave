@@ -234,7 +234,7 @@
 
 /* ===== MEDIA QUERIES ===== */
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .headerContainer {
         padding: 0 var(--space-md);
     }
@@ -257,7 +257,7 @@
     }
 }
 
-@media (max-width: 640px) {
+@media screen and (max-width: 640px) {
     .nav {
         height: 80px;
     }
@@ -308,5 +308,9 @@
         display: flex;
         width: var(--space-2xl);
         height: var(--space-2xl);
+    }
+
+    .header.scrolled > .menu {
+        top: -1090px;
     }
 }

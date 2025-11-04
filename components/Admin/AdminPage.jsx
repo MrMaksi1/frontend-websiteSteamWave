@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import styles from './AdminPage.module.css'
 import Notification from '@/components/Notification/Notification'
 import MarkdownEditor from '@/components/MarkdownEditor/MarkdownEditor'
+import {API_URL} from "@/config/config";
 
 export default function AdminPage({ activeSection = 'users' }) {
     const [users, setUsers] = useState([])
@@ -16,8 +17,8 @@ export default function AdminPage({ activeSection = 'users' }) {
     const [newPost, setNewPost] = useState({ title: '', content: '', media: null, preview: null })
 
     const token = typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null
-    const USERS_API = 'http://localhost:8080/api/admin/users'
-    const NEWS_API = 'http://localhost:8080/api/admin/news'
+    const USERS_API = `${API_URL}/admin/users`
+    const NEWS_API = `${API_URL}/admin/news`
 
     /** ----- NEWS EDITING ----- */
     const [editingNewsId, setEditingNewsId] = useState(null)

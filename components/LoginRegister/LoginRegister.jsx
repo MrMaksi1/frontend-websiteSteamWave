@@ -5,6 +5,7 @@ import styles from './LoginRegister.module.css'
 import Popup from '@/components/Popup/Popup'
 import Notification from '@/components/Notification/Notification'
 import CopyToClipboard from '@/components/ClipboardCopy/ClipboardCopy'
+import {API_URL} from "@/config/config";
 
 export default function LoginRegister() {
   const [activeTab, setActiveTab] = useState('login')
@@ -18,7 +19,7 @@ export default function LoginRegister() {
   const [showForgotPassword, setShowForgotPassword] = useState(false)
   const [notification, setNotification] = useState(null)
 
-  const API_URL = 'http://localhost:8080/api/auth'
+  const AUTH_URL = `${API_URL}/auth`
 
   const handleTabChange = (tab) => {
     setActiveTab(tab)
@@ -40,7 +41,7 @@ export default function LoginRegister() {
     const refreshToken = localStorage.getItem('refreshToken')
     if (!refreshToken) throw new Error('Нет refresh token, войдите снова')
 
-    const res = await fetch(`${API_URL}/refresh`, {
+    const res = await fetch(`${AUTH_URL}/refresh`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ refresh_token: refreshToken })
@@ -83,7 +84,7 @@ const handleSubmit = async (e) => {
     }
 
     try {
-      const response = await fetch(`${API_URL}/login`, {
+      const response = await fetch(`${AUTH_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: formData.username, password: formData.password })
@@ -115,7 +116,7 @@ const handleSubmit = async (e) => {
     }
 
     try {
-      const response = await fetch(`${API_URL}/register`, {
+      const response = await fetch(`${AUTH_URL}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: formData.username, password: formData.password })

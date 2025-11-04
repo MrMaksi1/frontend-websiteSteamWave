@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import styles from './News.module.css'
 import {useRouter} from "next/navigation";
+import {API_URL} from "@/config/config.jsx";
 
 export default function NewsPage() {
     const [news, setNews] = useState([])
@@ -10,8 +11,8 @@ export default function NewsPage() {
     const [error, setError] = useState('')
     const router = useRouter()
 
-    const API_URL = 'http://localhost:8080/api/news'
-    const BACKEND_URL = 'http://localhost:8080'
+    const NEWS_URL = `${API_URL}/news`
+    const BACKEND_URL = `${API_URL}`
 
     const truncateText = (text, maxLength = 150) => {
         if (text.length <= maxLength) return text
@@ -25,7 +26,7 @@ export default function NewsPage() {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const res = await fetch(API_URL)
+                const res = await fetch(NEWS_URL)
                 const data = await res.json()
                 if (!res.ok) throw new Error(data.message || 'Ошибка при загрузке новостей')
 

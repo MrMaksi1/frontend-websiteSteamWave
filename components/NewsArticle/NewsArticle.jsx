@@ -6,7 +6,7 @@ import styles from './NewsArticle.module.css'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-import Head from "next/head";
+import {API_URL} from "@/config/config";
 
 export default function NewsArticle() {
     const [newsItem, setNewsItem] = useState(null)
@@ -17,8 +17,8 @@ export default function NewsArticle() {
     const params = useParams()
     const newsId = params.id
 
-    const API_URL = `http://localhost:8080/api/news`
-    const BACKEND_URL = 'http://localhost:8080'
+    const NEWS_URL = `${API_URL}/news`
+    const BACKEND_URL = `${API_URL}`
 
     const parseDateArray = (dateArray) => {
         if (!dateArray || !Array.isArray(dateArray)) return null
@@ -57,7 +57,7 @@ export default function NewsArticle() {
 
         const fetchNews = async () => {
             try {
-                const response = await fetch(API_URL, {
+                const response = await fetch(NEWS_URL, {
                     method: 'GET'
                 })
 

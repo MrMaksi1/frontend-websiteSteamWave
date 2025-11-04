@@ -10,7 +10,6 @@
     width: 90%;
     margin: var(--space-md) auto;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
 }
 
 .heroTop {
@@ -111,6 +110,43 @@
 
 .heroButton:hover {
     transform: translateY(2px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: none;
     background: var(--secondary);
+}
+
+@media screen and (max-width: 1080px) {
+    .heroTitle {
+        font-size: var(--text-4xl) !important;
+    }
+
+    .heroTopText p {
+        font-size: var(--text-md) !important;
+    }
+
+    .heroContent p {
+        font-size: var(--text-md) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .heroTop {
+        flex-direction: column;
+    }
+
+    .headerDivider {
+        margin: 0 var(--space-md);
+    }
+
+    .headerLinksList {
+        gap: var(--space-sm);
+    }
+
+    .headerLogo {
+        font-size: 1.2rem;
+    }
+
+    .headerLogoIcon {
+        width: var(--space-xl);
+        height: var(--space-xl);
+    }
 }

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import styles from './Profile.module.css'
 import Notification from '@/components/Notification/Notification'
 import Image from "next/image";
+import {API_URL} from "@/config/config";
 
 export default function Profile() {
     const [userData, setUserData] = useState(null)
@@ -15,7 +16,7 @@ export default function Profile() {
     const [error, setError] = useState('')
     const router = useRouter()
 
-    const API_URL = 'http://localhost:8080/api/profile'
+    const PROFILE_URL = `${API_URL}/profile`
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -26,7 +27,7 @@ export default function Profile() {
             }
 
             try {
-                const response = await fetch(API_URL, {
+                const response = await fetch(PROFILE_URL, {
                     method: 'GET',
                     headers: { 'Authorization': `Bearer ${token}` }
                 })
@@ -87,7 +88,7 @@ export default function Profile() {
 
         try {
             if (editedData.username !== userData.username) {
-                const res = await fetch(`${API_URL}/username`, {
+                const res = await fetch(`${PROFILE_URL}/username`, {
                     method: 'PUT',
                     headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
                     body: JSON.stringify({ newUsername: editedData.username })
@@ -99,7 +100,7 @@ export default function Profile() {
             }
 
             if (editedData.oldPassword && editedData.newPassword) {
-                const res = await fetch(`${API_URL}/password`, {
+                const res = await fetch(`${PROFILE_URL}/password`, {
                     method: 'PUT',
                     headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
                     body: JSON.stringify({ oldPassword: editedData.oldPassword, newPassword: editedData.newPassword })

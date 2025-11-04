@@ -1,5 +1,6 @@
 .newsContainer {
     padding: var(--space-3xl) var(--space-xl);
+    color: var(--text-muted);
 }
 
 .newsTitle {
