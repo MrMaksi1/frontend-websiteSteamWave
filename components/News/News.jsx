@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import styles from './News.module.css'
 import {useRouter} from "next/navigation";
-import {API_URL} from "@/config/config.jsx";
+import {API_URL, BACKEND_URL} from "@/config/config.jsx";
 
 export default function NewsPage() {
     const [news, setNews] = useState([])
@@ -32,7 +32,7 @@ export default function NewsPage() {
 
                 const newsWithFullUrl = data.map(post => ({
                     ...post,
-                    mediaUrl: post.mediaUrl ? `${BACKEND_URL}${post.mediaUrl}` : null,
+                    mediaUrl: post.mediaUrl ? `${BACKEND_URL}/${post.mediaUrl}` : null,
                     fullContentUrl: `/news/${post.id}`
                 }))
 
