@@ -26,11 +26,6 @@ const montserrat = Montserrat({
     subsets: ["latin", "cyrillic"]
 })
 
-const outfit = Outfit({
-    variable: "--font-outfit",
-    subsets: ["latin", "cyrillic"]
-})
-
 export const metadata = {
     title: {
         default: 'Игровые сервера Minecreaft — steamwave',
