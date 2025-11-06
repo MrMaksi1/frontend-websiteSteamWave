@@ -9,9 +9,7 @@ export const metadata = {
 export default function Home() {
   return (
       <main>
-        <div className="container">
           <News/>
-        </div>
       </main>
   );
 }

@@ -230,4 +230,17 @@
     .markdown-content ol {
         padding-left: var(--space-xl);
     }
+
+    .markdown-content p {
+        margin-bottom: var(--space-md) !important;
+        line-height: var(--leading-normal);
+        text-align: justify;
+        color: var(--text-muted);
+        font-size: var(--text-md);
+    }
+
+    .markdown-content strong, b {
+        color: var(--text) !important;
+        font-weight: var(--font-bold) !important;
+    }
 }

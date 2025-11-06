@@ -21,9 +21,7 @@ export async function generateMetadata({ params }) {
 export default function Home() {
     return (
         <main>
-            <div className="container">
-                <NewsArticle/>
-            </div>
+            <NewsArticle/>
         </main>
     );
 }
