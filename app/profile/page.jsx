@@ -1,4 +1,5 @@
 import Profile from "@/components/Profile/Profile";
+import styles from "./Page.module.css";
 
 export const metadata = {
     title: 'Профиль — steamwave',

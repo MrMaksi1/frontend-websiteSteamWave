@@ -40,5 +40,12 @@
 }
 
 @media screen and (max-width: 768px) {
-    padding: var(--space-3xl) var(--space-xs);
+    .container {
+        padding: var(--space-3xl) var(--space-xs);
+        max-width: var(--container-6xl);
+    }
+
+    .section p {
+        font-size: var(--text-md);
+    }
 }

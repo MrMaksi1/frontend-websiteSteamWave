@@ -31,7 +31,7 @@ export default function NewsPage() {
 
                 const newsWithFullUrl = data.map(post => ({
                     ...post,
-                    mediaUrl: post.mediaUrl ? `${BACKEND_URL}/${post.mediaUrl}` : null,
+                    mediaUrl: post.mediaUrl ? `${BACKEND_URL}${post.mediaUrl}` : null,
                     fullContentUrl: `/news/${post.id}`
                 }))
 

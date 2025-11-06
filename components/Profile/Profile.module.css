@@ -157,7 +157,11 @@
     background: var(--bg-dark);
 }
 
-.editButton, .saveButton, .cancelButton, .logoutButton, .adminButton {
+.editButton,
+.saveButton,
+.cancelButton,
+.logoutButton,
+.adminButton {
     padding: var(--space-sm) var(--space-lg);
     background: var(--bg-light);
     color: var(--text-muted);
@@ -286,7 +290,7 @@
 }
 
 /* ===== MEDIA QUERIES ===== */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .profileCard {
         flex-direction: column;
         text-align: center;
@@ -331,19 +335,28 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .editActions
+    .editActions, .buttonGroup
     {
         justify-content: center;
     }
 
-    .buttonGroup {
-        justify-content: center;
+    .editActions, .buttonGroup {
+        display: flex;
+        gap: var(--space-md);
+    }
+
+    .editButton,
+    .saveButton,
+    .cancelButton,
+    .logoutButton,
+    .adminButton {
+        padding: var(--space-md) var(--space-lg);
     }
 }
 
-@media (max-width: 480px) {
+@media screen and (max-width: 560px) {
     .profileContainer {
-        padding: var(--space-md);
+        padding: var(--space-md) var(--space-xs);
     }
 
     .profileCard {
@@ -368,7 +381,7 @@
         align-items: center;
     }
 
-    .saveButton, .cancelButton {
+    .saveButton, .cancelButton, .editButton, .logoutButton, .adminButton {
         margin: 0;
         width: 100%;
     }

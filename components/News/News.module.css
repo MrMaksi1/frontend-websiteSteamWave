@@ -74,3 +74,27 @@
 .textOverlay {
 }
 
+@media screen and (max-width: 768px) {
+    .newsGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: var(--space-2xl);
+    }
+
+    .newsCard {
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .newsGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: var(--space-2xl);
+    }
+
+    .newsCard {
+        height: 350px;
+    }
+}
+

@@ -1,0 +1,6 @@
+﻿.container {
+    padding: var(--space-3xl) var(--space-md);
+    max-width: var(--container-6xl);
+    margin: 0 auto !important;
+    justify-content: center;
+}

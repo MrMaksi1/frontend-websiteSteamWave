@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
 
     return (
     <html lang="ru" className="dark:scheme-dark">
-        <body className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${outfit.variable} ${inter.variable} antialiased`}>
+        <body className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${inter.variable} antialiased`}>
             <div className={styles.appContainer}>
                 <Header className={styles.headerWrapper}/>
 
