@@ -13,9 +13,10 @@
 
 .adminContainer {
     padding: var(--space-3xl) var(--space-md);
-    max-width: var(--container-6xl);
+    max-width: 100%;
     margin: 0 auto !important;
     justify-content: center;
+    overflow-x: hidden;
 }
 
 .contentSection {
@@ -120,11 +121,13 @@
 .tableWrapper {
     max-height: 800px;
     overflow-y: auto;
+    overflow-x: auto;
 }
 
 .table {
     width: 100%;
     table-layout: fixed;
+    min-width: 800px;
 }
 
 .table thead {
