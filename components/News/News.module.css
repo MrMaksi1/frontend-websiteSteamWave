@@ -71,13 +71,10 @@
     transform: scale(1.05);
 }
 
-.textOverlay {
-}
-
 @media screen and (max-width: 768px) {
     .newsGrid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
         gap: var(--space-2xl);
     }
 
@@ -87,6 +84,14 @@
 
     .newsContainer {
         padding: var(--space-3xl) var(--space-md);
+    }
+
+    .newsContent {
+        font-size: var(--text-md);
+    }
+
+    .newsPostTitle {
+        font-size: var(--text-xl);
     }
 }
 
@@ -99,6 +104,14 @@
 
     .newsCard {
         height: 350px;
+    }
+
+    .newsContent {
+        font-size: var(--text-sm);
+    }
+
+    .newsPostTitle {
+        font-size: var(--text-lg);
     }
 }
 
