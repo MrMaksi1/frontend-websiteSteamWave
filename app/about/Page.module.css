@@ -1,4 +1,4 @@
-﻿.header {
+.header {
     text-align: center;
     margin-bottom: var(--space-2xl);
 }
@@ -37,4 +37,8 @@
 .section strong {
     color: var(--text);
     font-weight: var(--font-bold);
+}
+
+@media screen and (max-width: 768px) {
+    padding: var(--space-3xl) var(--space-xs);
 }
