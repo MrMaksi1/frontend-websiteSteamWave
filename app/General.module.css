@@ -1,0 +1,10 @@
+﻿.pageContent {
+    justify-content: center;
+    max-width: var(--container-6xl);
+    margin: var(--space-3xl) auto !important;
+}
+
+.pageHeader {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}

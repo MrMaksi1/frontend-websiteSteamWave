@@ -1,20 +1,8 @@
-.header {
-    text-align: center;
-    margin-bottom: var(--space-2xl);
-}
-
 .title {
     font-size: var(--text-4xl);
     font-weight: var(--font-bold);
     color: var(--text);
     margin: 0;
-}
-
-.container {
-    padding: var(--space-3xl) var(--space-md);
-    max-width: var(--container-6xl);
-    margin: 0 auto !important;
-    justify-content: center;
 }
 
 .section {
@@ -40,7 +28,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .container {
+    .pageContent {
         padding: var(--space-3xl) var(--space-xs);
         max-width: var(--container-6xl);
     }

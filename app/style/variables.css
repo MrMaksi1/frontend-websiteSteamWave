@@ -1,31 +1,31 @@
 ﻿:root {
     /* oklch */
-    --bg-dark: oklch(0.15 0.025 253);
-    --bg: oklch(0.2 0.025 253);
-    --bg-light: oklch(0.25 0.025 253);
-    --text: oklch(0.96 0.05 253);
-    --text-muted: oklch(0.76 0.05 253);
-    --border: oklch(0.4 0.05 253);
-    --border-muted: oklch(0.3 0.05 253);
-    --primary: oklch(0.76 0.1 253);
-    --secondary: oklch(0.76 0.1 73);
+    --bg-dark: oklch(0.1 0.015 70);
+    --bg: oklch(0.15 0.015 70);
+    --bg-light: oklch(0.2 0.015 70);
+    --text: oklch(0.96 0.03 70);
+    --text-muted: oklch(0.76 0.03 70);
+    --highlight: oklch(0.5 0.03 70);
+    --border: oklch(0.4 0.03 70);
+    --border-muted: oklch(0.3 0.03 70);
+    --primary: oklch(0.76 0.1 70);
+    --secondary: oklch(0.76 0.1 250);
     --danger: oklch(0.7 0.05 30);
     --warning: oklch(0.7 0.05 100);
     --success: oklch(0.7 0.05 160);
     --info: oklch(0.7 0.05 260);
-    --highlight: oklch(0.5 0.05 253);
 
     /* hsl (fallback color) */
-    --bg-dark: hsl(222 91% 2%);
-    --bg: hsl(215 65% 5%);
-    --bg-light: hsl(212 41% 9%);
-    --text: hsl(213 100% 97%);
-    --text-muted: hsl(213 37% 71%);
-    --highlight: hsl(213 23% 40%);
-    --border: hsl(212 31% 29%);
-    --border-muted: hsl(212 45% 19%);
-    --primary: hsl(212 78% 73%);
-    --secondary: hsl(34 59% 62%);
+    --bg-dark: hsl(25 75% 1%);
+    --bg: hsl(29 50% 4%);
+    --bg-light: hsl(32 29% 8%);
+    --text: hsl(31 100% 93%);
+    --text-muted: hsl(31 20% 68%);
+    --highlight: hsl(32 15% 38%);
+    --border: hsl(32 21% 27%);
+    --border-muted: hsl(32 31% 17%);
+    --primary: hsl(32 61% 63%);
+    --secondary: hsl(210 77% 72%);
     --danger: hsl(9 26% 64%);
     --warning: hsl(52 19% 57%);
     --success: hsl(146 17% 59%);

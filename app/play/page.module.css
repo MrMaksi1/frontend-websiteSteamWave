@@ -1,4 +1,4 @@
-﻿.container {
+﻿.pageContent {
     max-width: 800px;
     margin: 0 auto;
     padding: var(--space-4xl) var(--space-xl);
@@ -62,7 +62,7 @@
 }
 
 @media (max-width: 768px) {
-    .container {
+    .pageContent {
         padding: var(--space-2xl) var(--space-md);
     }
 

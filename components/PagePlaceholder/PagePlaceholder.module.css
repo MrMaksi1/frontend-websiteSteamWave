@@ -1,4 +1,4 @@
-﻿.container {
+﻿.pageContent {
     min-height: 60vh;
     display: flex;
     align-items: center;
@@ -83,7 +83,7 @@
 }
 
 @media (max-width: 768px) {
-    .container {
+    .pageContent {
         padding: var(--space-2xl) var(--space-md);
     }
 

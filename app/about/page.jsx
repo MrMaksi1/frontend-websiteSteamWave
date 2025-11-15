@@ -1,5 +1,8 @@
 import PagePlaceholder from "@/components/PagePlaceholder/PagePlaceholder";
 import styles from './Page.module.css'
+import general from '../General.module.css'
+
+
 export const metadata = {
     title: 'О проекте — steamwave',
     description: 'О проекте',
@@ -8,8 +11,8 @@ export const metadata = {
 export default function Home() {
   return (
       <main>
-          <div className={styles.container}>
-              <div className={styles.header}>
+          <div className={general.container}>
+              <div className={general.pageHeader}>
                   <h1 className={styles.title}>О нас</h1>
               </div>
 

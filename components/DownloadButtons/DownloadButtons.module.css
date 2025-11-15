@@ -1,4 +1,4 @@
-﻿.container {
+﻿.pageContent {
     display: grid;
     gap: var(--space-3xl);
     max-width: 600px;
@@ -105,7 +105,7 @@
 }
 
 @media (max-width: 768px) {
-    .container {
+    .pageContent {
         gap: var(--space-2xl);
     }
 

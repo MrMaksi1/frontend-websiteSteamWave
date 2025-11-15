@@ -39,7 +39,6 @@ main{
   grid-auto-rows: auto 1fr auto;
   align-items: center;
   justify-items: center;
-  padding: var(--space-md);
   gap: var(--space-xl);
   display: flex;
   flex-direction: column;
@@ -48,6 +47,16 @@ main{
 
 a {
   text-decoration: none;
+}
+
+p {
+  color: var(--text-muted);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+  text-transform: uppercase;
+  font-weight: var(--font-bold);
 }
 
 .appContainer {
@@ -185,7 +194,7 @@ html {
 }
 
 @media (max-width: 640px) {
-  .container {
+  .pageContent {
     padding: 0 var(--space-md);
   }
 
